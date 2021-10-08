@@ -1,21 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
+import { default as theme } from './theme.json'
+import * as Font from 'expo-font'
+import AppLoading from 'expo-app-loading'
 
-export default function App() {
+const HomeScreen = () => {
+  const [fontsLoaded, setFontsLoaded] = React.useState(false)
+
+  const loadFonts = async () => {
+    await Font.loadAsync({
+      'roboto-thin': require('./assets/fonts/Roboto-Thin.ttf'),
+      'roboto-light': require('./assets/fonts/Roboto-Light.ttf'),
+      'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
+      'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf')
+    })
+  }
+
+  if (!fontsLoaded) {
+    return (
+      <AppLoading
+        startAsync={loadFonts}
+        onFinish={() => setFontsLoaded(true)}
+        onError={err => console.log(err)}
+      />
+    )
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text category='h1' style={{ fontFamily: 'roboto-regular' }}>HOME</Text>
+    </Layout>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default () => (
+  <ApplicationProvider
+    {...eva}
+    theme={{ ...eva.light, ...theme }}
+  >
+    <HomeScreen />
+  </ApplicationProvider>
+);
