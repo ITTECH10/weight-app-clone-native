@@ -5,6 +5,7 @@ import { default as theme } from './theme.json'
 import * as Font from 'expo-font'
 import AppLoading from 'expo-app-loading'
 import { MaterialCommunityIconsPack } from './assets/icons/material-community-pack'
+import { AppNavigator } from './navigation/AppNavigator';
 
 const HomeScreen = () => {
   const [fontsLoaded, setFontsLoaded] = React.useState(false)
@@ -42,7 +43,7 @@ export default () => (
       {...eva}
       theme={{ ...eva.light, ...theme }}
     >
-      <HomeScreen />
+      <AppNavigator />
     </ApplicationProvider>
   </>
 );
