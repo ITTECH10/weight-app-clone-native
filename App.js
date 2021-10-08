@@ -1,13 +1,15 @@
 import React from 'react';
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout, Text, IconRegistry } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { default as theme } from './theme.json'
 import * as Font from 'expo-font'
 import AppLoading from 'expo-app-loading'
 import { MaterialCommunityIconsPack } from './assets/icons/material-community-pack'
 import { AppNavigator } from './navigation/AppNavigator';
+import SafeArea from './constants/components/SafeArea';
+import StatusBar from './constants/components/StatusBar';
 
-const HomeScreen = () => {
+const App = () => {
   const [fontsLoaded, setFontsLoaded] = React.useState(false)
 
   const loadFonts = async () => {
@@ -30,9 +32,10 @@ const HomeScreen = () => {
   }
 
   return (
-    <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text category='h1' style={{ fontFamily: 'roboto-regular' }}>HOME</Text>
-    </Layout>
+    <SafeArea>
+      <StatusBar />
+      <AppNavigator />
+    </SafeArea>
   )
 }
 
@@ -43,7 +46,7 @@ export default () => (
       {...eva}
       theme={{ ...eva.light, ...theme }}
     >
-      <AppNavigator />
+      <App />
     </ApplicationProvider>
   </>
 );
