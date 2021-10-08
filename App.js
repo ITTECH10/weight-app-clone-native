@@ -1,9 +1,10 @@
 import React from 'react';
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
+import { ApplicationProvider, Layout, Text, IconRegistry } from '@ui-kitten/components';
 import { default as theme } from './theme.json'
 import * as Font from 'expo-font'
 import AppLoading from 'expo-app-loading'
+import { MaterialCommunityIconsPack } from './assets/icons/material-community-pack'
 
 const HomeScreen = () => {
   const [fontsLoaded, setFontsLoaded] = React.useState(false)
@@ -35,10 +36,13 @@ const HomeScreen = () => {
 }
 
 export default () => (
-  <ApplicationProvider
-    {...eva}
-    theme={{ ...eva.light, ...theme }}
-  >
-    <HomeScreen />
-  </ApplicationProvider>
+  <>
+    <IconRegistry icons={MaterialCommunityIconsPack} />
+    <ApplicationProvider
+      {...eva}
+      theme={{ ...eva.light, ...theme }}
+    >
+      <HomeScreen />
+    </ApplicationProvider>
+  </>
 );
