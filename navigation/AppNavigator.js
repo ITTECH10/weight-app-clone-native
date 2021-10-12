@@ -24,7 +24,7 @@ function HomeStackNavigator() {
 }
 
 const HomeIcon = (props) => (
-    <Icon {...props} name='account-convert' pack="material-community" />
+    <Icon {...props} name='scale-balance' pack="material-community" />
 );
 
 const TrendsIcon = (props) => (

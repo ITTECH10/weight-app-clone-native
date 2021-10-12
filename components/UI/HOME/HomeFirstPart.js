@@ -14,6 +14,9 @@ const HomeFirstPart = () => {
                 bgColor={theme['color-primary-default']}
             />
             <View style={styles.circleContainer}>
+                <AdaptiveText style={{ marginBottom: 10 }}>
+                    Person X
+                </AdaptiveText>
                 <View style={{ ...styles.circle, backgroundColor: theme['color-primary-default'] }}>
                     <View style={styles.circleText}>
                         <AdaptiveText category="h2">
@@ -24,7 +27,7 @@ const HomeFirstPart = () => {
                 <View style={styles.goalsBox}>
                     <View>
                         <AdaptiveText>
-                            Weight Goal: 70KG
+                            Weight Goal: 70kg
                         </AdaptiveText>
                     </View>
                     <View>
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
     },
     circleContainer: {
         alignItems: 'center',
-        marginTop: 50
+        marginTop: 30
     },
     circle: {
         borderColor: '#fff',

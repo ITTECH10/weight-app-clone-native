@@ -1,24 +1,29 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Button, Layout } from '@ui-kitten/components'
+import { Button, Layout, useTheme } from '@ui-kitten/components'
 import { useNavigation } from '@react-navigation/core'
+import AdaptiveText from '../../../constants/components/AdaptiveText'
+import MenuButton from './MenuButton'
 
 const WeightCircumferenceSwitcher = ({ bgColor = '#fff' }) => {
     const navigation = useNavigation()
+    const theme = useTheme()
 
     return (
         <Layout style={{ ...styles.container, backgroundColor: bgColor }}>
             <View style={styles.switchBtnsContainer}>
-                <Button onPress={() => navigation.navigate('Home')} style={{ ...styles.weightBtn, ...styles.switchBtns }}>
-                    Weight
+                <Button status="basic" onPress={() => navigation.navigate('Home')} style={{ ...styles.weightBtn, ...styles.switchBtns }}>
+                    <AdaptiveText color={theme['color-primary-default']}>
+                        Weight
+                    </AdaptiveText>
                 </Button>
-                <Button onPress={() => navigation.navigate('Circumferences')} style={styles.switchBtns}>
-                    Circumference
+                <Button status="basic" onPress={() => navigation.navigate('Circumferences')} style={styles.switchBtns}>
+                    <AdaptiveText color={theme['color-primary-default']}>
+                        Circumferences
+                    </AdaptiveText>
                 </Button>
             </View>
-            <Button style={styles.plusBtn}>
-                +
-            </Button>
+            <MenuButton />
         </Layout>
     )
 }
@@ -34,17 +39,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     weightBtn: {
-        marginRight: 12,
+        marginRight: 18
     },
-    switchBtns: {
-        // borderRadius: 5
-        borderColor: '#fff',
-        // borderWidth: 1,
-    },
-    plusBtn: {
-        position: 'absolute',
-        right: 35,
-        borderColor: '#fff',
-        borderWidth: .8
-    }
+    switchBtns: {}
 })
