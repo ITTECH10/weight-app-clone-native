@@ -6,7 +6,7 @@ const StatusBarThemed = () => {
     const theme = useTheme()
 
     return (
-        <StatusBar backgroundColor={theme['color-primary-default']} />
+        <StatusBar style="light" backgroundColor={theme['color-primary-default']} />
     )
 }
 

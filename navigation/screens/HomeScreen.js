@@ -1,10 +1,16 @@
 import React from 'react'
-import { Text, Layout } from '@ui-kitten/components';
+import { StyleSheet } from 'react-native'
+import { Layout } from '@ui-kitten/components'
+import HomeFirstPart from '../../components/UI/HOME/HomeFirstPart'
 
-const HomeScreen = () => (
-    <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text category='h1'>HOME</Text>
-    </Layout>
-);
+const WeightScreen = () => {
+    return (
+        <Layout style={{ flex: 1 }}>
+            <HomeFirstPart />
+        </Layout>
+    )
+}
 
-export default HomeScreen
+export default WeightScreen
+
+const styles = StyleSheet.create({})
