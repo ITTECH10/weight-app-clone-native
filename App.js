@@ -1,17 +1,19 @@
 import React from 'react';
 import 'react-native-gesture-handler';
 import * as eva from '@eva-design/eva';
+import AppContextProvider, { useAppContext } from './context/AppContext';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { default as theme } from './theme.json'
 import * as Font from 'expo-font'
 import AppLoading from 'expo-app-loading'
 import { MaterialCommunityIconsPack } from './assets/icons/material-community-pack'
-import { AppNavigator } from './navigation/AppNavigator';
+import { AppNavigator, AuthNavigator } from './navigation/AppNavigator';
 import SafeArea from './constants/components/SafeArea';
 import StatusBar from './constants/components/StatusBar';
 
 const App = () => {
   const [fontsLoaded, setFontsLoaded] = React.useState(false)
+  const { authenticated } = useAppContext()
 
   const loadFonts = async () => {
     await Font.loadAsync({
@@ -21,6 +23,12 @@ const App = () => {
       'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf')
     })
   }
+
+  const navigatorToRender = authenticated ? (
+    <AppNavigator />
+  ) : (
+    <AuthNavigator />
+  )
 
   if (!fontsLoaded) {
     return (
@@ -35,13 +43,13 @@ const App = () => {
   return (
     <SafeArea>
       <StatusBar />
-      <AppNavigator />
+      {navigatorToRender}
     </SafeArea>
   )
 }
 
 export default () => (
-  <>
+  <AppContextProvider>
     <IconRegistry icons={MaterialCommunityIconsPack} />
     <ApplicationProvider
       {...eva}
@@ -49,5 +57,5 @@ export default () => (
     >
       <App />
     </ApplicationProvider>
-  </>
+  </AppContextProvider>
 );

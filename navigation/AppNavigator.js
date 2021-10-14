@@ -5,11 +5,12 @@ import { BottomNavigation, BottomNavigationTab, Icon } from '@ui-kitten/componen
 import { createStackNavigator } from '@react-navigation/stack';
 
 // SCREENS
-// import HomeScreen from './screens/HomeScreen';
 import TrendsScreen from './screens/TrendsScreen';
 import MyProfileScreen from './screens/MyProfileScreen';
 import HomeScreen from './screens/HomeScreen';
 import CircumferencesScreen from './screens/CircumferencesScreen';
+import SignupScreen from './screens/Authentication/SignupScreen'
+import LoginScreen from './screens/Authentication/LoginScreen'
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -53,8 +54,21 @@ const TabNavigator = () => (
     </Navigator>
 );
 
+const AuthStackNavigator = () => (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Screen name='Signup' component={SignupScreen} />
+        <Screen name='Login' component={LoginScreen} />
+    </Stack.Navigator>
+)
+
 export const AppNavigator = () => (
     <NavigationContainer>
         <TabNavigator />
     </NavigationContainer>
 );
+
+export const AuthNavigator = () => (
+    <NavigationContainer>
+        <AuthStackNavigator />
+    </NavigationContainer>
+)
