@@ -28,7 +28,7 @@ const SettingsIcon = (props) => (
     <Icon {...props} name="cog-outline" pack="material-community" />
 )
 
-const MyProfileScreen = () => {
+const MyProfileScreen = ({ navigation }) => {
     const theme = useTheme()
 
     return (
@@ -97,6 +97,7 @@ const MyProfileScreen = () => {
                 </Layout>
                 <Layout style={{ alignItems: 'center' }}>
                     <Button
+                        onPress={() => navigation.navigate('Settings')}
                         accessoryRight={SettingsIcon}
                         appearance="ghost"
                         size="large"

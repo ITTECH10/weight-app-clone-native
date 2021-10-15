@@ -7,11 +7,14 @@ export const useAppContext = () => {
 }
 
 const AppContextProvider = ({ children }) => {
-    const [authenticated, setAuthenticated] = React.useState(false)
+    const [authenticated, setAuthenticated] = React.useState(true)
+    const [generalAppLoading, setGeneralAppLoading] = React.useState(false)
 
     const value = {
         authenticated,
-        setAuthenticated
+        setAuthenticated,
+        generalAppLoading,
+        setGeneralAppLoading
     }
 
     return (

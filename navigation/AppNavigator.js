@@ -5,12 +5,13 @@ import { BottomNavigation, BottomNavigationTab, Icon } from '@ui-kitten/componen
 import { createStackNavigator } from '@react-navigation/stack';
 
 // SCREENS
+import SignupScreen from './screens/Authentication/SignupScreen'
+import LoginScreen from './screens/Authentication/LoginScreen'
 import TrendsScreen from './screens/TrendsScreen';
 import MyProfileScreen from './screens/MyProfileScreen';
 import HomeScreen from './screens/HomeScreen';
 import CircumferencesScreen from './screens/CircumferencesScreen';
-import SignupScreen from './screens/Authentication/SignupScreen'
-import LoginScreen from './screens/Authentication/LoginScreen'
+import SettingsScreen from './screens/SettingsScreen'
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -20,6 +21,15 @@ function HomeStackNavigator() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Circumferences" component={CircumferencesScreen} />
+        </Stack.Navigator>
+    );
+}
+
+function ProfileStackNavigator() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Profile" options={{ headerShown: false }} component={MyProfileScreen} />
+            <Stack.Screen name="Settings" options={{ headerTitle: 'Settings' }} component={SettingsScreen} />
         </Stack.Navigator>
     );
 }
@@ -50,14 +60,14 @@ const TabNavigator = () => (
     <Navigator screenOptions={{ headerShown: false }} tabBar={props => <BottomTabBar {...props} />}>
         <Screen name='Measurements' component={HomeStackNavigator} />
         <Screen name='Trends' component={TrendsScreen} />
-        <Screen name='MyProfile' component={MyProfileScreen} />
+        <Screen name='MyProfile' component={ProfileStackNavigator} />
     </Navigator>
 );
 
 const AuthStackNavigator = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Screen name='Signup' component={SignupScreen} />
-        <Screen name='Login' component={LoginScreen} />
+        <Stack.Screen name='Login' component={LoginScreen} />
+        <Stack.Screen name='Signup' component={SignupScreen} />
     </Stack.Navigator>
 )
 

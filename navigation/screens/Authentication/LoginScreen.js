@@ -1,23 +1,38 @@
 import React from 'react'
-import { StyleSheet, Image, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Image } from 'react-native'
 import { Button, Layout, Input, useTheme } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
-
-// const PasswordHiddenIcon = (props) => (
-//     <Icon {...props} name="eye" pack="material-community" />
-// )
-
-// const PasswordShownIcon = (props) => (
-//     <Icon {...props} name="eye-off" pack="material-community" />
-// )
+import { useAppContext } from '../../../context/AppContext'
+import axios from 'axios'
 
 const LoginScreen = ({ navigation }) => {
-    // const [passwordVisible, setPasswordVisible] = React.useState(false)
     const theme = useTheme()
+    const { setAuthenticated, setGeneralAppLoading } = useAppContext()
 
-    // const showPasswordHandler = () => {
-    //     setPasswordVisible(prevState => !prevState)
-    // }
+    const [fields, setFields] = React.useState({
+        email: '',
+        password: ''
+    })
+
+    const handleChange = (name) => (value) => {
+        setFields({ ...fields, [name]: value });
+    };
+
+    const loginHandler = () => {
+        setGeneralAppLoading(true)
+        const data = { ...fields }
+
+        axios.post('/users/login', data)
+            .then(res => {
+                if (res.status === 201) {
+                    setGeneralAppLoading(false)
+                    setAuthenticated(true)
+                }
+            }).catch(err => {
+                setGeneralAppLoading(false)
+                console.log(err.response)
+            })
+    }
 
     return (
         <Layout style={{ flex: 1 }}>
@@ -26,27 +41,32 @@ const LoginScreen = ({ navigation }) => {
                     <Image resizeMode="contain" style={{ height: '100%', width: '100%' }} source={require('./../../../assets/images/scallow-logo.png')} />
                 </Layout>
 
-                <KeyboardAvoidingView behavior="padding" style={{ width: '80%', marginTop: 20, justifyContent: 'flex-end' }}>
+                <Layout style={{ width: '80%', marginTop: 20, justifyContent: 'flex-end' }}>
                     <Layout>
                         <Input
                             placeholder="E-mail"
+                            onChangeText={handleChange('email')}
                             size="large"
                             style={{ marginBottom: 10 }}
                         />
                         <Input
                             placeholder="Password"
+                            onChangeText={handleChange('password')}
                             size="large"
                             style={{ marginBottom: 10 }}
                             secureTextEntry
                         />
-                        <Button size="medium" onPress={() => navigation.navigate('Signup')}>
+                        <Button disabled={Object.values(fields).some(el => el === '')} size="medium" onPress={loginHandler}>
                             Login
                         </Button>
                         <AdaptiveText onPress={() => navigation.navigate('Signup')} style={{ textAlign: 'center', marginTop: 3 }} color={theme['color-primary-default']}>
                             Don't have an account? Signup
                         </AdaptiveText>
+                        <AdaptiveText style={{ textAlign: 'center', marginTop: 3 }} color={theme['color-primary-default']}>
+                            Forgot your password?
+                        </AdaptiveText>
                     </Layout>
-                </KeyboardAvoidingView>
+                </Layout>
             </Layout>
         </Layout>
     )

@@ -1,27 +1,39 @@
 import React from 'react'
 import { StyleSheet, Image, KeyboardAvoidingView } from 'react-native'
-import { Button, Layout, Input, Datepicker, Icon, useTheme } from '@ui-kitten/components'
+import { Button, Layout, Input, useTheme } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
-
-const DateIcon = (props) => (
-    <Icon {...props} name="calendar-range" pack="material-community" />
-)
-
-// const PasswordHiddenIcon = (props) => (
-//     <Icon {...props} name="eye" pack="material-community" />
-// )
-
-// const PasswordShownIcon = (props) => (
-//     <Icon {...props} name="eye-off" pack="material-community" />
-// )
+import axios from 'axios'
+import { useAppContext } from '../../../context/AppContext'
 
 const SignupScreen = ({ navigation }) => {
-    // const [passwordVisible, setPasswordVisible] = React.useState(false)
+    const { setAuthenticated, setGeneralAppLoading } = useAppContext()
     const theme = useTheme()
 
-    // const showPasswordHandler = () => {
-    //     setPasswordVisible(prevState => !prevState)
-    // }
+    const [fields, setFields] = React.useState({
+        email: '',
+        password: '',
+        confirmPassword: ''
+    })
+
+    const handleChange = (name) => (value) => {
+        setFields({ ...fields, [name]: value });
+    };
+
+    const signupHandler = () => {
+        setGeneralAppLoading(true)
+        const data = { ...fields }
+
+        axios.post('/users/signup', data)
+            .then(res => {
+                if (res.status === 201) {
+                    setGeneralAppLoading(false)
+                    setAuthenticated(true)
+                }
+            }).catch(err => {
+                setGeneralAppLoading(false)
+                console.log(err.response)
+            })
+    }
 
     return (
         <Layout style={{ flex: 1 }}>
@@ -33,38 +45,26 @@ const SignupScreen = ({ navigation }) => {
                 <KeyboardAvoidingView behavior="padding" style={{ width: '80%', marginTop: 20, justifyContent: 'flex-end' }}>
                     <Layout>
                         <Input
-                            placeholder="First name"
-                            size="large"
-                            style={{ marginBottom: 10 }}
-                        />
-                        <Input
-                            placeholder="Last name"
-                            size="large"
-                            style={{ marginBottom: 10 }}
-                        />
-                        <Datepicker
-                            placeholder="Birth date"
-                            style={{ marginBottom: 10 }}
-                            accessoryRight={DateIcon}
-                        />
-                        <Input
                             placeholder="E-mail"
+                            onChangeText={handleChange('email')}
                             size="large"
                             style={{ marginBottom: 10 }}
                         />
                         <Input
                             placeholder="Password"
+                            onChangeText={handleChange('password')}
                             size="large"
                             style={{ marginBottom: 10 }}
                             secureTextEntry
                         />
                         <Input
                             placeholder="ConfirmPassword"
+                            onChangeText={handleChange('confirmPassword')}
                             size="large"
                             style={{ marginBottom: 20 }}
                             secureTextEntry
                         />
-                        <Button size="medium" onPress={() => navigation.navigate('Login')}>
+                        <Button disabled={Object.values(fields).some(el => el === '')} size="medium" onPress={signupHandler}>
                             Signup
                         </Button>
                         <AdaptiveText onPress={() => navigation.navigate('Login')} style={{ textAlign: 'center', marginTop: 3 }} color={theme['color-primary-default']}>
@@ -73,7 +73,7 @@ const SignupScreen = ({ navigation }) => {
                     </Layout>
                 </KeyboardAvoidingView>
             </Layout>
-        </Layout>
+        </Layout >
     )
 }
 

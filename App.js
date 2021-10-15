@@ -1,8 +1,9 @@
 import React from 'react';
 import 'react-native-gesture-handler';
+import axios from 'axios'
 import * as eva from '@eva-design/eva';
 import AppContextProvider, { useAppContext } from './context/AppContext';
-import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry, Spinner } from '@ui-kitten/components';
 import { default as theme } from './theme.json'
 import * as Font from 'expo-font'
 import AppLoading from 'expo-app-loading'
@@ -10,10 +11,13 @@ import { MaterialCommunityIconsPack } from './assets/icons/material-community-pa
 import { AppNavigator, AuthNavigator } from './navigation/AppNavigator';
 import SafeArea from './constants/components/SafeArea';
 import StatusBar from './constants/components/StatusBar';
+import LoadingIndicator from './constants/components/LoadingIndicator'
+
+axios.defaults.baseURL = 'http://192.168.100.14:8000/api/v1'
 
 const App = () => {
   const [fontsLoaded, setFontsLoaded] = React.useState(false)
-  const { authenticated } = useAppContext()
+  const { authenticated, generalAppLoading } = useAppContext()
 
   const loadFonts = async () => {
     await Font.loadAsync({
@@ -43,7 +47,7 @@ const App = () => {
   return (
     <SafeArea>
       <StatusBar />
-      {navigatorToRender}
+      {!generalAppLoading ? navigatorToRender : <LoadingIndicator />}
     </SafeArea>
   )
 }
