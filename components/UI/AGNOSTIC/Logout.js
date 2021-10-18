@@ -12,8 +12,6 @@ const Logout = ({ navigation }) => {
         setTimeout(() => {
             setAuthenticated(false)
             setGeneralAppLoading(false)
-            // FIX LATER
-            // navigation.navigate('Login')
         }, 2000)
     }
 
