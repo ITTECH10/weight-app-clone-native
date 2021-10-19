@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import { Button, Layout, useTheme, Icon } from '@ui-kitten/components'
+import { StyleSheet, ScrollView } from 'react-native'
+import { Button, Layout, useTheme, Icon, Text } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
 import { useAppContext } from '../../../context/AppContext'
 
@@ -8,13 +8,13 @@ const TakeNoteIcon = (props) => (
     <Icon {...props} name="file-document-edit-outline" pack="material-community" />
 )
 
-const HomeSecondPart = () => {
+const HomeSecondPart = ({ navigation }) => {
     const theme = useTheme()
     const { mostRecentRecording } = useAppContext()
-    const { recordingDate: mostRecentRecordingDate, currentWeight, BMI, bodyFat } = mostRecentRecording
+    const { recordingDate: mostRecentRecordingDate, currentWeight, BMI, bodyFat, recordingNote } = mostRecentRecording
 
     return (
-        <Layout>
+        <ScrollView>
             <Layout level="2">
                 <AdaptiveText style={styles.resultsToDate} color={theme['color-basic-600']}>
                     {new Date(mostRecentRecordingDate).toLocaleString()}
@@ -52,9 +52,13 @@ const HomeSecondPart = () => {
                     accessoryLeft={TakeNoteIcon}
                     size="medium"
                     style={styles.noteBtn}
+                    onPress={() => navigation.navigate('TakeNote')}
                 />
+                <Text style={{ marginBottom: 2 }}>
+                    {recordingNote}
+                </Text>
             </Layout>
-        </Layout>
+        </ScrollView>
 
     )
 }
@@ -75,7 +79,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     noteBtnContainer: {
-        marginTop: 10
+        marginTop: 10,
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     noteBtn: {
         width: 50

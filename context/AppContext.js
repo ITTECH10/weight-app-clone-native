@@ -24,7 +24,6 @@ const AppContextProvider = ({ children }) => {
                         ...res.data.me,
                         fullName: `${res.data.me.firstName} ${res.data.me.lastName}`
                     })
-                    getMostRecentAndInitialRecording()
                 }
             }).catch(err => {
                 console.log(err.response)
@@ -67,6 +66,7 @@ const AppContextProvider = ({ children }) => {
             setAuthenticated(true)
             axios.defaults.headers.common['Authorization'] = token
             getMe()
+            getMostRecentAndInitialRecording()
         }
     }, [logout, setAuthenticated, getMe])
 

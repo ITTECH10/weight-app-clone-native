@@ -14,6 +14,7 @@ import CircumferencesScreen from './screens/CircumferencesScreen';
 import SettingsScreen from './screens/SettingsScreen'
 import RecordWeightScreen from './screens/RecordWeightScreen'
 import SetGoalScreen from './screens/SetGoalScreen'
+import TakeNoteScreen from './screens/TakeNoteScreen'
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -25,6 +26,7 @@ function HomeStackNavigator() {
             <Stack.Screen name="Circumferences" component={CircumferencesScreen} />
             <Stack.Screen name="RecordWeight" component={RecordWeightScreen} options={{ headerShown: true, headerTitle: 'Manual Input' }} />
             <Stack.Screen name="SetGoal" component={SetGoalScreen} options={{ headerShown: true, headerTitle: 'Set goal' }} />
+            <Stack.Screen name="TakeNote" component={TakeNoteScreen} options={{ headerShown: true, headerTitle: 'Take note' }} />
         </Stack.Navigator>
     );
 }

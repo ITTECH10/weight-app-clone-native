@@ -8,7 +8,7 @@ const WeightScreen = ({ navigation }) => {
     return (
         <Layout style={{ flex: 1 }}>
             <HomeFirstPart navigation={navigation} />
-            <HomeSecondPart />
+            <HomeSecondPart navigation={navigation} />
         </Layout>
     )
 }
