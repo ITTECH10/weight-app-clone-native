@@ -17,7 +17,7 @@ axios.defaults.baseURL = 'http://192.168.100.14:8000/api/v1'
 
 const App = () => {
   const [fontsLoaded, setFontsLoaded] = React.useState(false)
-  const { authenticated, generalAppLoading } = useAppContext()
+  const { authenticated, generalAppLoading, checkForToken } = useAppContext()
 
   const loadFonts = async () => {
     await Font.loadAsync({
@@ -27,6 +27,10 @@ const App = () => {
       'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf')
     })
   }
+
+  React.useEffect(() => {
+    checkForToken()
+  }, [checkForToken])
 
   const navigatorToRender = authenticated ? (
     <AppNavigator />

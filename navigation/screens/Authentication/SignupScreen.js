@@ -4,12 +4,15 @@ import { Button, Layout, Input, useTheme } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
 import axios from 'axios'
 import { useAppContext } from '../../../context/AppContext'
+import { storeString } from './../../../utils/StoreDataToStorage'
 
 const SignupScreen = ({ navigation }) => {
     const { setAuthenticated, setGeneralAppLoading } = useAppContext()
     const theme = useTheme()
 
     const [fields, setFields] = React.useState({
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
         confirmPassword: ''
@@ -27,6 +30,7 @@ const SignupScreen = ({ navigation }) => {
             .then(res => {
                 if (res.status === 201) {
                     setGeneralAppLoading(false)
+                    storeString('token', res.data.token)
                     setAuthenticated(true)
                 }
             }).catch(err => {
@@ -42,8 +46,20 @@ const SignupScreen = ({ navigation }) => {
                     <Image resizeMode="contain" style={{ height: '100%', width: '100%' }} source={require('./../../../assets/images/scallow-logo.png')} />
                 </Layout>
 
-                <KeyboardAvoidingView behavior="padding" style={{ width: '80%', marginTop: 20, justifyContent: 'flex-end' }}>
+                <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={-100} style={{ width: '80%', marginTop: 20, justifyContent: 'flex-end' }}>
                     <Layout>
+                        <Input
+                            placeholder="Firstname"
+                            onChangeText={handleChange('firstName')}
+                            size="large"
+                            style={{ marginBottom: 10 }}
+                        />
+                        <Input
+                            placeholder="Lastname"
+                            onChangeText={handleChange('lastName')}
+                            size="large"
+                            style={{ marginBottom: 10 }}
+                        />
                         <Input
                             placeholder="E-mail"
                             onChangeText={handleChange('email')}

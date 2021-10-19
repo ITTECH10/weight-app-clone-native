@@ -4,6 +4,7 @@ import { Button, Layout, Input, useTheme } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
 import { useAppContext } from '../../../context/AppContext'
 import axios from 'axios'
+import { storeString } from './../../../utils/StoreDataToStorage'
 
 const LoginScreen = ({ navigation }) => {
     const theme = useTheme()
@@ -26,6 +27,7 @@ const LoginScreen = ({ navigation }) => {
             .then(res => {
                 if (res.status === 201) {
                     setGeneralAppLoading(false)
+                    storeString('token', res.data.token)
                     setAuthenticated(true)
                 }
             }).catch(err => {

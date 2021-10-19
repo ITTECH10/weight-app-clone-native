@@ -4,12 +4,20 @@ import { Layout, Text, Button, useTheme, Calendar } from '@ui-kitten/components'
 import ListSlider from 'react-native-list-slider';
 import AdaptiveText from '../../constants/components/AdaptiveText';
 import axios from 'axios'
+import { useAppContext } from './../../context/AppContext'
 
 const RecordWeightScreen = ({ navigation }) => {
     const theme = useTheme()
-    const [weightValue, setWeightValue] = React.useState(70)
-    const [bodyFatValue, setBodyFatValue] = React.useState(15)
+    const { mostRecentRecording, setMostRecentRecording } = useAppContext()
+    const { currentHeight, currentWeight, bodyFat } = mostRecentRecording
+    const [heightValue, setHeightValue] = React.useState(currentHeight)
+    const [weightValue, setWeightValue] = React.useState(currentWeight)
+    const [bodyFatValue, setBodyFatValue] = React.useState(bodyFat)
     const [recordingDate, setDate] = React.useState(new Date());
+
+    const heightValueHandler = (value) => {
+        setHeightValue(value)
+    }
 
     const weightValueHandler = (value) => {
         setWeightValue(value)
@@ -21,6 +29,7 @@ const RecordWeightScreen = ({ navigation }) => {
 
     const handleSubmit = () => {
         const data = {
+            currentHeight: heightValue,
             currentWeight: weightValue,
             bodyFat: bodyFatValue,
             recordingDate
@@ -29,6 +38,7 @@ const RecordWeightScreen = ({ navigation }) => {
         axios.post('/users/record', data)
             .then(res => {
                 if (res.status === 201) {
+                    setMostRecentRecording(res.data.recording)
                     navigation.goBack()
                 }
             }).catch(err => {
@@ -38,6 +48,22 @@ const RecordWeightScreen = ({ navigation }) => {
 
     return (
         <ScrollView style={{ flex: 1 }}>
+            <Layout>
+                <Text category="h5" style={{ textAlign: 'center', marginVertical: 20 }}>
+                    Height
+                </Text>
+                <AdaptiveText
+                    style={{ textAlign: 'center' }}
+                    category="h3"
+                    color={theme['color-primary-default']}
+                >
+                    {heightValue}cm
+                </AdaptiveText>
+                <ListSlider
+                    value={heightValue}
+                    onValueChange={heightValueHandler}
+                />
+            </Layout>
             <Layout>
                 <Text category="h5" style={{ textAlign: 'center', marginVertical: 20 }}>
                     Weight

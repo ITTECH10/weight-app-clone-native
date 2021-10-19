@@ -1,12 +1,25 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native'
 import WeightCircumferenceSwitcher from './WeightCircumferenceSwitcher'
-import { Text, Button, useTheme } from '@ui-kitten/components'
+import { Button, useTheme } from '@ui-kitten/components'
 import PrimaryColorView from '../../../constants/components/PrimaryColorView'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
+import { useAppContext } from '../../../context/AppContext'
 
-const HomeFirstPart = () => {
+const HomeFirstPart = ({ navigation }) => {
     const theme = useTheme()
+    const { logedCustomer, mostRecentRecording, initialRecording } = useAppContext()
+    const { fullName, weightGoal } = logedCustomer
+    const { currentWeight: mostRecentWeight, BMI: mostRecentBMI, bodyFat: mostRecentBodyFat } = mostRecentRecording
+    const { recordingDate: initialRecordingDate, currentWeight: initialWeight, BMI: initialBMI, bodyFat: initialBodyFat } = initialRecording
+
+    const statisticIsPositive = (n1, n2) => {
+        return Math.sign(n1 - n2) === 1 ? '+' : '-'
+    }
+
+    const weightCalculation = `${statisticIsPositive(mostRecentWeight, initialWeight)}${Number(mostRecentWeight - initialWeight).toFixed(1)}`
+    const BMICalculation = `${statisticIsPositive(mostRecentBMI, initialBMI)}${Number(mostRecentBMI - initialBMI).toFixed(1)}`
+    const bodyFatCalculation = `${statisticIsPositive(mostRecentBodyFat, initialBodyFat)}${Number(mostRecentBodyFat - initialBodyFat).toFixed(1)}`
 
     return (
         <PrimaryColorView style={styles.mainContainer}>
@@ -15,19 +28,24 @@ const HomeFirstPart = () => {
             />
             <View style={styles.circleContainer}>
                 <AdaptiveText style={{ marginBottom: 10 }}>
-                    Person X
+                    {fullName}
                 </AdaptiveText>
-                <View style={{ ...styles.circle, backgroundColor: theme['color-primary-default'] }}>
-                    <View style={styles.circleText}>
-                        <AdaptiveText category="h2">
-                            71.3kg
-                        </AdaptiveText>
+                <TouchableWithoutFeedback
+                    onPress={() => navigation.navigate('RecordWeight')}
+                >
+                    <View
+                        style={{ ...styles.circle, backgroundColor: theme['color-primary-default'] }}>
+                        <View style={styles.circleText}>
+                            <AdaptiveText category="h2">
+                                {mostRecentWeight}kg
+                            </AdaptiveText>
+                        </View>
                     </View>
-                </View>
+                </TouchableWithoutFeedback>
                 <View style={styles.goalsBox}>
                     <View>
                         <AdaptiveText>
-                            Weight Goal: 70kg
+                            Weight Goal: {weightGoal}kg
                         </AdaptiveText>
                     </View>
                     <View>
@@ -40,13 +58,13 @@ const HomeFirstPart = () => {
 
             <View style={styles.fromDateText}>
                 <AdaptiveText>
-                    From September 29, 2021 12:28
+                    From {new Date(initialRecordingDate).toLocaleString()}
                 </AdaptiveText>
             </View>
             <View style={styles.recentChangesBox}>
                 <View style={styles.changedStatsBtnBox}>
                     <AdaptiveText category="h5">
-                        +1.3kg
+                        {weightCalculation}kg
                     </AdaptiveText>
                     <AdaptiveText>
                         Weight
@@ -54,7 +72,7 @@ const HomeFirstPart = () => {
                 </View>
                 <View style={styles.changedStatsBtnBox}>
                     <AdaptiveText category="h5">
-                        +0.4
+                        {BMICalculation}
                     </AdaptiveText>
                     <AdaptiveText>
                         BMI
@@ -62,7 +80,7 @@ const HomeFirstPart = () => {
                 </View>
                 <View style={styles.changedStatsBtnBox}>
                     <AdaptiveText category="h5">
-                        +0.5%
+                        {bodyFatCalculation}%
                     </AdaptiveText>
                     <AdaptiveText>
                         Body fat

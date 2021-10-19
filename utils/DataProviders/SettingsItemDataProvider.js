@@ -4,11 +4,6 @@ class SettingsItemDataProvider {
     constructor() {
         this.data = [
             {
-                icon: ThemesIcon,
-                title: 'Themes',
-                id: '1'
-            },
-            {
                 icon: SetGoalIcon,
                 title: 'Set Goal',
                 id: '2'

@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Button, Layout, useTheme, Icon } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
+import { useAppContext } from '../../../context/AppContext'
 
 const TakeNoteIcon = (props) => (
     <Icon {...props} name="file-document-edit-outline" pack="material-community" />
@@ -9,18 +10,20 @@ const TakeNoteIcon = (props) => (
 
 const HomeSecondPart = () => {
     const theme = useTheme()
+    const { mostRecentRecording } = useAppContext()
+    const { recordingDate: mostRecentRecordingDate, currentWeight, BMI, bodyFat } = mostRecentRecording
 
     return (
         <Layout>
             <Layout level="2">
                 <AdaptiveText style={styles.resultsToDate} color={theme['color-basic-600']}>
-                    October 8, 2021 08:27
+                    {new Date(mostRecentRecordingDate).toLocaleString()}
                 </AdaptiveText>
             </Layout>
             <Layout style={styles.boxContainer}>
                 <Layout style={styles.singleBox}>
                     <AdaptiveText color={theme['color-success-default']} category="h5">
-                        71.30kg
+                        {currentWeight}kg
                     </AdaptiveText>
                     <AdaptiveText color={theme['color-basic-600']}>
                         Weight
@@ -28,7 +31,7 @@ const HomeSecondPart = () => {
                 </Layout>
                 <Layout style={styles.singleBox}>
                     <AdaptiveText color={theme['color-success-default']} category="h5">
-                        22.0
+                        {BMI}
                     </AdaptiveText>
                     <AdaptiveText color={theme['color-basic-600']}>
                         BMI
@@ -36,7 +39,7 @@ const HomeSecondPart = () => {
                 </Layout>
                 <Layout style={styles.singleBox}>
                     <AdaptiveText color={theme['color-success-default']} category="h5">
-                        15.5%
+                        {bodyFat}%
                     </AdaptiveText>
                     <AdaptiveText color={theme['color-basic-600']}>
                         Body fat

@@ -3,23 +3,14 @@ import { StyleSheet } from 'react-native'
 import { Button } from '@ui-kitten/components'
 import { useAppContext } from './../../../context/AppContext'
 
-const Logout = ({ navigation }) => {
-    const { setAuthenticated, setGeneralAppLoading } = useAppContext()
-
-    const logoutHandler = () => {
-        setGeneralAppLoading(true)
-
-        setTimeout(() => {
-            setAuthenticated(false)
-            setGeneralAppLoading(false)
-        }, 2000)
-    }
+const Logout = () => {
+    const { logout } = useAppContext()
 
     return (
         <Button
             appearance="ghost"
             size="medium"
-            onPress={logoutHandler}
+            onPress={logout}
         >
             LOGOUT
         </Button>

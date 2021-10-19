@@ -4,10 +4,10 @@ import { Layout } from '@ui-kitten/components'
 import HomeFirstPart from '../../components/UI/HOME/HomeFirstPart'
 import HomeSecondPart from '../../components/UI/HOME/HomeSecondPart'
 
-const WeightScreen = () => {
+const WeightScreen = ({ navigation }) => {
     return (
         <Layout style={{ flex: 1 }}>
-            <HomeFirstPart />
+            <HomeFirstPart navigation={navigation} />
             <HomeSecondPart />
         </Layout>
     )

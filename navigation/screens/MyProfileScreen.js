@@ -3,6 +3,7 @@ import { Layout, Button, Icon, Text, useTheme } from '@ui-kitten/components';
 import PrimaryColorView from './../../constants/components/PrimaryColorView'
 import { View, Image } from 'react-native';
 import AdaptiveText from './../../constants/components/AdaptiveText'
+import { useAppContext } from './../../context/AppContext'
 
 const NotificationsBellIcon = (props) => (
     <Icon {...props} name="bell-outline" pack="material-community" />
@@ -30,6 +31,9 @@ const SettingsIcon = (props) => (
 
 const MyProfileScreen = ({ navigation }) => {
     const theme = useTheme()
+    const { logedCustomer, mostRecentRecording } = useAppContext()
+    const { currentWeight } = mostRecentRecording
+    const { email, fullName } = logedCustomer
 
     return (
         <Layout style={{ flex: 1 }}>
@@ -49,7 +53,7 @@ const MyProfileScreen = ({ navigation }) => {
                     <View style={{ marginLeft: 20, marginBottom: 10 }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <AdaptiveText category="h5" style={{ fontFamily: 'roboto-bold' }}>
-                                Person X
+                                {fullName}
                             </AdaptiveText>
                             <Button style={{ marginLeft: 5 }} size="medium" accessoryRight={EditIcon}>
                                 Edit
@@ -57,7 +61,7 @@ const MyProfileScreen = ({ navigation }) => {
                         </View>
                         <View>
                             <AdaptiveText category="s2">
-                                personX@test.com
+                                {email}
                             </AdaptiveText>
                         </View>
                     </View>
@@ -116,7 +120,7 @@ const MyProfileScreen = ({ navigation }) => {
                         </Layout>
                         <Layout style={{ marginLeft: 5 }}>
                             <Text>
-                                Person X
+                                {fullName}
                             </Text>
                             <Text category="label" style={{ color: theme['color-basic-500'] }}>
                                 Oct 8, 2021
@@ -129,7 +133,7 @@ const MyProfileScreen = ({ navigation }) => {
                             color={theme['color-primary-default']}
                             category="h6"
                         >
-                            71.3kg
+                            {currentWeight}kg
                         </AdaptiveText>
                         <Button size="tiny">Primary User</Button>
                     </Layout>
