@@ -9,11 +9,11 @@ import { useAppContext } from './../../context/AppContext'
 const RecordWeightScreen = ({ navigation }) => {
     const theme = useTheme()
     const { mostRecentRecording, setMostRecentRecording } = useAppContext()
+    const [recordingDate, setDate] = React.useState(new Date());
     const { currentHeight, currentWeight, bodyFat } = mostRecentRecording
     const [heightValue, setHeightValue] = React.useState(currentHeight)
     const [weightValue, setWeightValue] = React.useState(currentWeight)
     const [bodyFatValue, setBodyFatValue] = React.useState(bodyFat)
-    const [recordingDate, setDate] = React.useState(new Date());
 
     const heightValueHandler = (value) => {
         setHeightValue(value)

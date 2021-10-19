@@ -73,6 +73,7 @@ const AppContextProvider = ({ children }) => {
     const value = {
         authenticated,
         logedCustomer,
+        setLogedCustomer,
         setAuthenticated,
         generalAppLoading,
         setGeneralAppLoading,

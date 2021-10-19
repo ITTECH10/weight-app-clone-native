@@ -13,7 +13,11 @@ import SafeArea from './constants/components/SafeArea';
 import StatusBar from './constants/components/StatusBar';
 import LoadingIndicator from './constants/components/LoadingIndicator'
 
-axios.defaults.baseURL = 'http://192.168.100.14:8000/api/v1'
+// DEVELOPMENT
+// axios.defaults.baseURL = 'http://192.168.100.14:8000/api/v1'
+
+// PRODUCTION
+axios.defaults.baseURL = 'https://scallow.herokuapp.com/api/v1'
 
 const App = () => {
   const [fontsLoaded, setFontsLoaded] = React.useState(false)

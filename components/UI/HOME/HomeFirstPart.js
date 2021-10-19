@@ -43,13 +43,15 @@ const HomeFirstPart = ({ navigation }) => {
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.goalsBox}>
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate('SetGoal')}>
+                        <View>
+                            <AdaptiveText>
+                                Weight Goal: {weightGoal}kg
+                            </AdaptiveText>
+                        </View>
+                    </TouchableWithoutFeedback>
                     <View>
-                        <AdaptiveText>
-                            Weight Goal: {weightGoal}kg
-                        </AdaptiveText>
-                    </View>
-                    <View>
-                        <Button style={styles.bodyFatBtn} size="small">
+                        <Button onPress={() => navigation.navigate('SetGoal')} style={styles.bodyFatBtn} size="small">
                             Body fat goal
                         </Button>
                     </View>
