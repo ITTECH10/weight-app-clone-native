@@ -13,8 +13,10 @@ import SafeArea from './constants/components/SafeArea';
 import StatusBar from './constants/components/StatusBar';
 import LoadingIndicator from './constants/components/LoadingIndicator'
 
-// DEVELOPMENT
+// DEVELOPMENT // OFFICE
 // axios.defaults.baseURL = 'http://192.168.100.14:8000/api/v1'
+// DEVELOPMENT // HOME
+// axios.defaults.baseURL = 'http://192.168.0.11:8000/api/v1'
 
 // PRODUCTION
 axios.defaults.baseURL = 'https://scallow.herokuapp.com/api/v1'

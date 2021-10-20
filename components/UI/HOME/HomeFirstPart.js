@@ -5,6 +5,7 @@ import { Button, useTheme } from '@ui-kitten/components'
 import PrimaryColorView from '../../../constants/components/PrimaryColorView'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
 import { useAppContext } from '../../../context/AppContext'
+import Loader from './../../../constants/components/LoadingIndicator'
 
 const HomeFirstPart = ({ navigation }) => {
     const theme = useTheme()

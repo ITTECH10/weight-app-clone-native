@@ -3,9 +3,28 @@ import { Chart, Line, Area, VerticalAxis, Tooltip } from 'react-native-responsiv
 import { StyleSheet } from 'react-native'
 import { Layout, Text, useTheme } from '@ui-kitten/components'
 import WeightBmiBodyFatSwitcher from './WeightBmiBodyFatSwitcher'
+import { useAppContext } from '../../../context/AppContext'
 
 const WeeklyChart = () => {
     const theme = useTheme()
+    const { weeklyChartRecords } = useAppContext()
+
+    // SLICE ON CLIENT IS A CURRENT WORKAROUND! DO ON BACKEND LATER!
+    const data = weeklyChartRecords.slice(-7).map((record, i) => {
+        return {
+            x: i * 2.5,
+            y: record.currentWeight
+        }
+    })
+
+    const minWeightEver = Math.min.apply(Math, data.map(o => o.y))
+    const maxWeightEver = Math.max.apply(Math, data.map(o => o.y))
+
+    const verticalAxisTickValues = []
+
+    for (let i = minWeightEver; i < minWeightEver + 11; i++) {
+        verticalAxisTickValues.push(i)
+    }
 
     return (
         <Layout style={{ height: '100%' }}>
@@ -15,20 +34,12 @@ const WeeklyChart = () => {
             <Layout>
                 <Chart
                     style={{ height: 400, width: '100%' }}
-                    data={[
-                        { x: 0, y: 65 },
-                        { x: 2.5, y: 64 },
-                        { x: 5, y: 66 },
-                        { x: 7.5, y: 68.3 },
-                        { x: 10, y: 69 },
-                        { x: 12.5, y: 68.5 },
-                        { x: 14, y: 67 },
-                    ]}
+                    data={data}
                     padding={{ left: 40, bottom: 20, right: 20, top: 20 }}
-                    xDomain={{ min: 0, max: 14 }}
-                    yDomain={{ min: 60, max: 70 }}
+                    xDomain={{ min: 0, max: 15 }}
+                    yDomain={{ min: minWeightEver, max: maxWeightEver + .5 }}
                 >
-                    <VerticalAxis tickCount={10} tickValues={[60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70]} theme={{ labels: { formatter: (v) => v.toFixed(2) }, grid: { visible: false } }} />
+                    <VerticalAxis tickCount={5} tickValues={verticalAxisTickValues} theme={{ labels: { formatter: (v) => v.toFixed(2) }, grid: { visible: false } }} />
                     <Area theme={{ gradient: { from: { color: theme['color-primary-default'] }, to: { color: theme['color-primary-default'], opacity: 0.2 } } }} />
                     <Line
                         tooltipComponent={<Tooltip theme={{ shape: { color: 'red', height: 25, width: 50 }, formatter: (v) => String(v.y + ' ' + 'kg') }} />}

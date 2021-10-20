@@ -2,13 +2,17 @@ import React from 'react'
 import { StyleSheet, Image } from 'react-native'
 import { Button, Layout, Input, useTheme } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
+import Alert from '../../../constants/components/Alert'
 import { useAppContext } from '../../../context/AppContext'
 import axios from 'axios'
 import { storeString } from './../../../utils/StoreDataToStorage'
 
 const LoginScreen = ({ navigation }) => {
     const theme = useTheme()
-    const { setAuthenticated, setGeneralAppLoading } = useAppContext()
+    const { setAuthenticated, setToken } = useAppContext()
+    const [errors, setErrors] = React.useState({
+        message: ''
+    })
 
     const [fields, setFields] = React.useState({
         email: '',
@@ -20,19 +24,21 @@ const LoginScreen = ({ navigation }) => {
     };
 
     const loginHandler = () => {
-        setGeneralAppLoading(true)
+        // setGeneralAppLoading(true)
         const data = { ...fields }
 
         axios.post('/users/login', data)
-            .then(res => {
+            .then(async res => {
                 if (res.status === 201) {
-                    setGeneralAppLoading(false)
-                    storeString('token', res.data.token)
                     setAuthenticated(true)
+                    await storeString('token', res.data.token)
+                    setToken(res.data.token)
                 }
             }).catch(err => {
-                setGeneralAppLoading(false)
-                console.log(err.response)
+                setErrors({
+                    message: err.response.data.message
+                })
+                // console.log(err)
             })
     }
 
@@ -45,6 +51,11 @@ const LoginScreen = ({ navigation }) => {
 
                 <Layout style={{ width: '80%', marginTop: 20, justifyContent: 'flex-end' }}>
                     <Layout>
+                        <Alert
+                            message={errors.message}
+                            setMessage={setErrors}
+                            severity={theme['color-danger-600']}
+                        />
                         <Input
                             placeholder="E-mail"
                             onChangeText={handleChange('email')}
