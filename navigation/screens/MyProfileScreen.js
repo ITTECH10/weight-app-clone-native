@@ -133,7 +133,7 @@ const MyProfileScreen = ({ navigation }) => {
                             color={theme['color-primary-default']}
                             category="h6"
                         >
-                            {currentWeight}kg
+                            {currentWeight ? currentWeight : 0}kg
                         </AdaptiveText>
                         <Button size="tiny">Primary User</Button>
                     </Layout>

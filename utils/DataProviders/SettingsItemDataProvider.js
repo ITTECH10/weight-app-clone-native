@@ -1,4 +1,4 @@
-import { ThemesIcon, SetGoalIcon } from './../../components/UI/ICONS/icons'
+import { SetGoalIcon } from './../../components/UI/ICONS/icons'
 
 class SettingsItemDataProvider {
     constructor() {
@@ -6,6 +6,7 @@ class SettingsItemDataProvider {
             {
                 icon: SetGoalIcon,
                 title: 'Set Goal',
+                screenName: 'SetGoal',
                 id: '2'
             }
         ]

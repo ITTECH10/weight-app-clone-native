@@ -1,11 +1,14 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { Layout, Text, Button } from '@ui-kitten/components'
 import { RightArrowIcon } from '../ICONS/icons'
+import { useNavigation } from '@react-navigation/native'
 
-const SettingsScreenItem = ({ title, icon }) => {
+const SettingsScreenItem = ({ title, icon, screenName }) => {
+    const navigation = useNavigation()
+
     return (
-        <Layout style={styles.itemContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate(screenName)} style={styles.itemContainer}>
             <Layout style={styles.itemContainerFirstFlex}>
                 <Button
                     appearance="ghost"
@@ -26,12 +29,12 @@ const SettingsScreenItem = ({ title, icon }) => {
                     status="basic"
                 />
             </Layout>
-        </Layout>
+        </TouchableOpacity>
     )
 }
 
 export const renderSettingsScreenItem = ({ item }) => (
-    <SettingsScreenItem title={item.title} icon={item.icon} />
+    <SettingsScreenItem title={item.title} icon={item.icon} screenName={item.screenName} />
 );
 
 export default SettingsScreenItem

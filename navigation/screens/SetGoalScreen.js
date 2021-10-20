@@ -9,8 +9,8 @@ const SetGoalScreen = ({ navigation }) => {
     const [selectedButton, setSelectedButton] = React.useState(0)
     const { logedCustomer, setLogedCustomer } = useAppContext()
     const { weightGoal, bodyFatGoal } = logedCustomer
-    const [weightGoalValue, setWeightGoalValue] = React.useState(weightGoal)
-    const [bodyFatGoalValue, setBodyFatGoalValue] = React.useState(bodyFatGoal)
+    const [weightGoalValue, setWeightGoalValue] = React.useState(weightGoal ? weightGoal : 70)
+    const [bodyFatGoalValue, setBodyFatGoalValue] = React.useState(bodyFatGoal ? bodyFatGoal : 15)
 
     const selectButtonHandler = (value) => {
         setSelectedButton(value)

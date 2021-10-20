@@ -8,12 +8,12 @@ import { useAppContext } from './../../context/AppContext'
 
 const RecordWeightScreen = ({ navigation }) => {
     const theme = useTheme()
-    const { mostRecentRecording, setMostRecentRecording } = useAppContext()
+    const { mostRecentRecording, setMostRecentRecording, initialRecording, setInitialRecording } = useAppContext()
     const [recordingDate, setDate] = React.useState(new Date());
     const { currentHeight, currentWeight, bodyFat } = mostRecentRecording
-    const [heightValue, setHeightValue] = React.useState(currentHeight)
-    const [weightValue, setWeightValue] = React.useState(currentWeight)
-    const [bodyFatValue, setBodyFatValue] = React.useState(bodyFat)
+    const [heightValue, setHeightValue] = React.useState(currentHeight ? currentHeight : 180)
+    const [weightValue, setWeightValue] = React.useState(currentWeight ? currentWeight : 80)
+    const [bodyFatValue, setBodyFatValue] = React.useState(bodyFat ? bodyFat : 15)
 
     const heightValueHandler = (value) => {
         setHeightValue(value)
@@ -39,6 +39,9 @@ const RecordWeightScreen = ({ navigation }) => {
             .then(res => {
                 if (res.status === 201) {
                     setMostRecentRecording(res.data.recording)
+                    if (Object.keys(initialRecording).length === 0) {
+                        setInitialRecording(res.data.recording)
+                    }
                     navigation.goBack()
                 }
             }).catch(err => {

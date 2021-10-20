@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Image, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Image, Keyboard } from 'react-native'
 import { Button, Layout, Input, useTheme } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
 import axios from 'axios'
@@ -8,7 +8,23 @@ import { storeString } from './../../../utils/StoreDataToStorage'
 
 const SignupScreen = ({ navigation }) => {
     const { setAuthenticated, setGeneralAppLoading } = useAppContext()
+    const [keyboardVisible, setKeyboardVisible] = React.useState(false)
     const theme = useTheme()
+
+    React.useEffect(() => {
+        const keyboardDidShow = Keyboard.addListener('keyboardDidShow', () => {
+            setKeyboardVisible(prevState => !prevState)
+        })
+
+        const keyboardDidHide = Keyboard.addListener('keyboardDidHide', () => {
+            setKeyboardVisible(false)
+        })
+
+        return () => {
+            keyboardDidShow.remove()
+            keyboardDidHide.remove()
+        }
+    })
 
     const [fields, setFields] = React.useState({
         firstName: '',
@@ -42,11 +58,12 @@ const SignupScreen = ({ navigation }) => {
     return (
         <Layout style={{ flex: 1 }}>
             <Layout style={{ alignItems: 'center', justifyContent: 'center' }}>
-                <Layout style={{ width: '100%', height: 240, marginTop: 80 }}>
-                    <Image resizeMode="contain" style={{ height: '100%', width: '100%' }} source={require('./../../../assets/images/scallow-logo.png')} />
-                </Layout>
+                {!keyboardVisible &&
+                    <Layout style={{ width: '100%', height: 240, marginTop: 80 }}>
+                        <Image resizeMode="contain" style={{ height: '100%', width: '100%' }} source={require('./../../../assets/images/scallow-logo.png')} />
+                    </Layout>}
 
-                <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={-100} style={{ width: '80%', marginTop: 20, justifyContent: 'flex-end' }}>
+                <Layout style={{ width: '80%', marginTop: 20, justifyContent: 'flex-end' }}>
                     <Layout>
                         <Input
                             placeholder="Firstname"
@@ -87,7 +104,7 @@ const SignupScreen = ({ navigation }) => {
                             Already have an account? Login
                         </AdaptiveText>
                     </Layout>
-                </KeyboardAvoidingView>
+                </Layout>
             </Layout>
         </Layout >
     )

@@ -14,7 +14,7 @@ const HomeFirstPart = ({ navigation }) => {
     const { recordingDate: initialRecordingDate, currentWeight: initialWeight, BMI: initialBMI, bodyFat: initialBodyFat } = initialRecording
 
     const statisticIsPositive = (n1, n2) => {
-        return Math.sign(n1 - n2) === 1 ? '+' : '-'
+        return Math.sign(n1 - n2) === 1 ? '+' : Math.sign(n1 - n2) === 0 ? '' : '-'
     }
 
     const weightCalculation = `${statisticIsPositive(mostRecentWeight, initialWeight)}${Number(mostRecentWeight - initialWeight).toFixed(1)}`
@@ -37,7 +37,7 @@ const HomeFirstPart = ({ navigation }) => {
                         style={{ ...styles.circle, backgroundColor: theme['color-primary-default'] }}>
                         <View style={styles.circleText}>
                             <AdaptiveText category="h2">
-                                {mostRecentWeight}kg
+                                {mostRecentWeight ? mostRecentWeight : 0}kg
                             </AdaptiveText>
                         </View>
                     </View>
@@ -46,7 +46,7 @@ const HomeFirstPart = ({ navigation }) => {
                     <TouchableWithoutFeedback onPress={() => navigation.navigate('SetGoal')}>
                         <View>
                             <AdaptiveText>
-                                Weight Goal: {weightGoal}kg
+                                Weight Goal: {weightGoal ? weightGoal : 0}kg
                             </AdaptiveText>
                         </View>
                     </TouchableWithoutFeedback>
@@ -59,14 +59,18 @@ const HomeFirstPart = ({ navigation }) => {
             </View>
 
             <View style={styles.fromDateText}>
-                <AdaptiveText>
-                    From {new Date(initialRecordingDate).toLocaleString()}
-                </AdaptiveText>
+                {initialRecordingDate ?
+                    <AdaptiveText>
+                        From {new Date(initialRecordingDate).toLocaleString()}
+                    </AdaptiveText> :
+                    <AdaptiveText>
+                        No stats for now.
+                    </AdaptiveText>}
             </View>
             <View style={styles.recentChangesBox}>
                 <View style={styles.changedStatsBtnBox}>
                     <AdaptiveText category="h5">
-                        {weightCalculation}kg
+                        {mostRecentWeight && initialWeight ? weightCalculation : 0}kg
                     </AdaptiveText>
                     <AdaptiveText>
                         Weight
@@ -74,7 +78,7 @@ const HomeFirstPart = ({ navigation }) => {
                 </View>
                 <View style={styles.changedStatsBtnBox}>
                     <AdaptiveText category="h5">
-                        {BMICalculation}
+                        {mostRecentBMI && initialBMI ? BMICalculation : 0}
                     </AdaptiveText>
                     <AdaptiveText>
                         BMI
@@ -82,7 +86,7 @@ const HomeFirstPart = ({ navigation }) => {
                 </View>
                 <View style={styles.changedStatsBtnBox}>
                     <AdaptiveText category="h5">
-                        {bodyFatCalculation}%
+                        {mostRecentBodyFat && initialBodyFat ? bodyFatCalculation : 0}%
                     </AdaptiveText>
                     <AdaptiveText>
                         Body fat

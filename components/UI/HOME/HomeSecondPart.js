@@ -16,14 +16,15 @@ const HomeSecondPart = ({ navigation }) => {
     return (
         <ScrollView>
             <Layout level="2">
-                <AdaptiveText style={styles.resultsToDate} color={theme['color-basic-600']}>
-                    {new Date(mostRecentRecordingDate).toLocaleString()}
-                </AdaptiveText>
+                {mostRecentRecordingDate &&
+                    <AdaptiveText style={styles.resultsToDate} color={theme['color-basic-600']}>
+                        {new Date(mostRecentRecordingDate).toLocaleString()}
+                    </AdaptiveText>}
             </Layout>
             <Layout style={styles.boxContainer}>
                 <Layout style={styles.singleBox}>
                     <AdaptiveText color={theme['color-success-default']} category="h5">
-                        {currentWeight}kg
+                        {currentWeight ? currentWeight : 0}kg
                     </AdaptiveText>
                     <AdaptiveText color={theme['color-basic-600']}>
                         Weight
@@ -31,7 +32,7 @@ const HomeSecondPart = ({ navigation }) => {
                 </Layout>
                 <Layout style={styles.singleBox}>
                     <AdaptiveText color={theme['color-success-default']} category="h5">
-                        {BMI}
+                        {BMI ? BMI : 0}
                     </AdaptiveText>
                     <AdaptiveText color={theme['color-basic-600']}>
                         BMI
@@ -39,7 +40,7 @@ const HomeSecondPart = ({ navigation }) => {
                 </Layout>
                 <Layout style={styles.singleBox}>
                     <AdaptiveText color={theme['color-success-default']} category="h5">
-                        {bodyFat}%
+                        {bodyFat ? bodyFat : 0}%
                     </AdaptiveText>
                     <AdaptiveText color={theme['color-basic-600']}>
                         Body fat
@@ -52,6 +53,7 @@ const HomeSecondPart = ({ navigation }) => {
                     accessoryLeft={TakeNoteIcon}
                     size="medium"
                     style={styles.noteBtn}
+                    disabled={!mostRecentRecording.currentWeight}
                     onPress={() => navigation.navigate('TakeNote')}
                 />
                 <Text style={{ marginBottom: 2 }}>
