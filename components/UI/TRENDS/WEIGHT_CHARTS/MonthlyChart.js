@@ -39,7 +39,7 @@ const MonthlyChart = () => {
                     xDomain={{ min: 0, max: 10.2 }}
                     yDomain={{ min: minWeightEver, max: maxWeightEver }}
                 >
-                    <VerticalAxis tickCount={5} tickValues={verticalAxisTickValues} theme={{ labels: { formatter: (v) => v.toFixed(2) }, grid: { visible: false } }} />
+                    <VerticalAxis tickCount={maxWeightEver - minWeightEver} tickValues={verticalAxisTickValues} theme={{ labels: { formatter: (v) => v.toFixed(2) }, grid: { visible: false } }} />
                     <Area theme={{ gradient: { from: { color: theme['color-primary-default'] }, to: { color: theme['color-primary-default'], opacity: 0.2 } } }} />
                     <Line
                         tooltipComponent={<Tooltip theme={{ shape: { color: 'red', height: 25, width: 50 }, formatter: (v) => String(v.y + ' ' + 'kg') }} />}

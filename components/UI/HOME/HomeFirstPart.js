@@ -15,7 +15,7 @@ const HomeFirstPart = ({ navigation }) => {
     const { recordingDate: initialRecordingDate, currentWeight: initialWeight, BMI: initialBMI, bodyFat: initialBodyFat } = initialRecording
 
     const statisticIsPositive = (n1, n2) => {
-        return Math.sign(n1 - n2) === 1 ? '+' : Math.sign(n1 - n2) === 0 ? '' : '-'
+        return Math.sign(n1 - n2) === 1 ? '+' : Math.sign(n1 - n2) === 0 ? '' : Math.sign(n1 - n2) === -1 ? '' : '-'
     }
 
     const weightCalculation = `${statisticIsPositive(mostRecentWeight, initialWeight)}${Number(mostRecentWeight - initialWeight).toFixed(1)}`

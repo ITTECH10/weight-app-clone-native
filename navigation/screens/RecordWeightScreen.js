@@ -8,7 +8,7 @@ import { useAppContext } from './../../context/AppContext'
 
 const RecordWeightScreen = ({ navigation }) => {
     const theme = useTheme()
-    const { mostRecentRecording, setMostRecentRecording, getWeeklyChartRecords, getMontlyChartRecords, initialRecording, setInitialRecording } = useAppContext()
+    const { mostRecentRecording, setMostRecentRecording, getMostRecentAndInitialRecording, getWeeklyChartRecords, getMontlyChartRecords, initialRecording, setInitialRecording } = useAppContext()
     const [recordingDate, setDate] = React.useState(new Date());
     const { currentHeight, currentWeight, bodyFat } = mostRecentRecording
     const [heightValue, setHeightValue] = React.useState(currentHeight ? currentHeight : 180)
@@ -38,7 +38,8 @@ const RecordWeightScreen = ({ navigation }) => {
         axios.post('/users/record', data)
             .then(res => {
                 if (res.status === 201) {
-                    setMostRecentRecording(res.data.recording)
+                    // setMostRecentRecording(res.data.recording)
+                    getMostRecentAndInitialRecording()
                     if (Object.keys(initialRecording).length === 0) {
                         setInitialRecording(res.data.recording)
                     }

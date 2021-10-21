@@ -20,11 +20,7 @@ const AppContextProvider = ({ children }) => {
     const [weeklyChartRecords, setWeeklyChartRecords] = React.useState([])
     const [monthlyChartRecords, setMonthlyChartRecords] = React.useState([])
 
-    const isObjectEmpty = (o) => {
-        return Object.keys(o).length === 0
-    }
-
-    const getMontlyChartRecords = React.useCallback((month) => {
+    const getMontlyChartRecords = React.useCallback(() => {
         axios.get('/users/recordings/monthly')
             .then(res => {
                 if (res.status === 200) {
@@ -59,6 +55,8 @@ const AppContextProvider = ({ children }) => {
     }
 
     const getMe = () => {
+        setGeneralAppLoading(true)
+
         axios.get('/users/me')
             .then(res => {
                 if (res.status === 200) {
@@ -66,24 +64,26 @@ const AppContextProvider = ({ children }) => {
                         ...res.data.me,
                         fullName: `${res.data.me.firstName} ${res.data.me.lastName}`
                     })
+                    setGeneralAppLoading(false)
                 }
             }).catch(err => {
+                setGeneralAppLoading(false)
                 console.log(err.response)
             })
     }
 
     const getMostRecentAndInitialRecording = () => {
-        setGeneralAppLoading(true)
+        // setGeneralAppLoading(true)
 
         axios.get('/users/record')
             .then(res => {
                 if (res.status === 200) {
                     setMostRecentRecording(res.data.mostRecentRecording)
                     setInitialRecording(res.data.initialRecording)
-                    setGeneralAppLoading(false)
+                    // setGeneralAppLoading(false)
                 }
             }).catch(err => {
-                setGeneralAppLoading(false)
+                // setGeneralAppLoading(false)
                 console.log(err.response)
             })
     }
@@ -129,6 +129,7 @@ const AppContextProvider = ({ children }) => {
         logedCustomer,
         setLogedCustomer,
         setAuthenticated,
+        getMostRecentAndInitialRecording,
         generalAppLoading,
         setGeneralAppLoading,
         logout,
