@@ -24,14 +24,14 @@ const TrendResultSwitcher = ({ selectedIndex, setSelectedIndex }) => {
                     style={{ marginHorizontal: 10, borderColor: '#eee', backgroundColor: selectedIndex === 1 ? theme['color-basic-default'] : null }}>
                     Month
                 </Button>
-                <Button
+                {/* <Button
                     onPress={() => setSelectedIndex(2)}
                     status="basic"
                     appearance="ghost"
                     style={{ borderColor: '#eee', backgroundColor: selectedIndex === 2 ? theme['color-basic-default'] : null }}
                 >
                     Year
-                </Button>
+                </Button> */}
             </Layout>
         </Layout>
     )

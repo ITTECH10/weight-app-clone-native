@@ -18,10 +18,22 @@ const AppContextProvider = ({ children }) => {
     const [mostRecentRecording, setMostRecentRecording] = React.useState({})
     const [initialRecording, setInitialRecording] = React.useState({})
     const [weeklyChartRecords, setWeeklyChartRecords] = React.useState([])
+    const [monthlyChartRecords, setMonthlyChartRecords] = React.useState([])
 
     const isObjectEmpty = (o) => {
         return Object.keys(o).length === 0
     }
+
+    const getMontlyChartRecords = React.useCallback((month) => {
+        axios.get('/users/recordings/monthly')
+            .then(res => {
+                if (res.status === 200) {
+                    setMonthlyChartRecords(res.data.averageMonthlyRecordings)
+                }
+            }).catch(err => {
+                console.log(err)
+            })
+    }, [])
 
     const getWeeklyChartRecords = React.useCallback(() => {
         axios.get('/users/recordings/weekly')
@@ -108,7 +120,7 @@ const AppContextProvider = ({ children }) => {
             getMe()
             getCustomerRecordings()
             getWeeklyChartRecords()
-
+            getMontlyChartRecords()
         }
     }, [token])
 
@@ -127,7 +139,9 @@ const AppContextProvider = ({ children }) => {
         setInitialRecording,
         setToken,
         getWeeklyChartRecords,
-        weeklyChartRecords
+        weeklyChartRecords,
+        monthlyChartRecords,
+        getMontlyChartRecords
     }
 
     return (

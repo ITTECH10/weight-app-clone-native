@@ -2,18 +2,15 @@ import React from 'react'
 import { Chart, Line, Area, VerticalAxis, Tooltip } from 'react-native-responsive-linechart'
 import { StyleSheet } from 'react-native'
 import { Layout, Text, useTheme } from '@ui-kitten/components'
-import WeightBmiBodyFatSwitcher from './WeightBmiBodyFatSwitcher'
-import MonthsSwitcher from './MonthsSwitcher'
 
-const MonthlyChart = () => {
+const YearlyChart = () => {
     const theme = useTheme()
 
     return (
         <Layout style={{ height: '100%' }}>
             <Text category="h5" style={{ margin: 10 }}>
-                Last 5 months statistics
+                Last year's statistics
             </Text>
-            <MonthsSwitcher />
             <Layout>
                 <Chart
                     style={{ height: 400, width: '100%' }}
@@ -35,12 +32,11 @@ const MonthlyChart = () => {
                         theme={{ stroke: { color: theme['color-primary-600'], width: 5 }, scatter: { default: { width: 8, height: 8, rx: 4, color: theme['color-primary-700'] }, selected: { color: 'red' } } }}
                     />
                 </Chart>
-                <WeightBmiBodyFatSwitcher />
             </Layout>
         </Layout>
     )
 }
 
-export default MonthlyChart
+export default YearlyChart
 
 const styles = StyleSheet.create({})
