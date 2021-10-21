@@ -3,7 +3,7 @@ import { Layout, Text } from "@ui-kitten/components";
 import TrendResultSwitcher from "../../components/UI/TRENDS/TrendResultSwitcher";
 import WeeklyChart from "../../components/UI/TRENDS/WEIGHT_CHARTS/WeeklyChart";
 import MonthlyChart from "../../components/UI/TRENDS/WEIGHT_CHARTS/MonthlyChart";
-import YearlyChart from "../../components/UI/TRENDS/WEIGHT_CHARTS/YearlyChart";
+// import YearlyChart from "../../components/UI/TRENDS/WEIGHT_CHARTS/YearlyChart";
 import WeightBmiBodyFatSwitcher from "../../components/UI/TRENDS/WeightBmiBodyFatSwitcher";
 import BmiWeeklyChart from "../../components/UI/TRENDS/BMI_CHARTS/BmiWeeklyChart";
 import BmiMonthlyChart from "../../components/UI/TRENDS/BMI_CHARTS/BmiMontlyChart";
