@@ -15,6 +15,7 @@ import SettingsScreen from './screens/SettingsScreen'
 import RecordWeightScreen from './screens/RecordWeightScreen'
 import SetGoalScreen from './screens/SetGoalScreen'
 import TakeNoteScreen from './screens/TakeNoteScreen'
+import HistoryScreen from './screens/HistoryScreen'
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -27,6 +28,15 @@ function HomeStackNavigator() {
             <Stack.Screen name="RecordWeight" component={RecordWeightScreen} options={{ headerShown: true, headerTitle: 'Manual Input' }} />
             <Stack.Screen name="SetGoal" component={SetGoalScreen} options={{ headerShown: true, headerTitle: 'Set goal' }} />
             <Stack.Screen name="TakeNote" component={TakeNoteScreen} options={{ headerShown: true, headerTitle: 'Take note' }} />
+        </Stack.Navigator>
+    );
+}
+
+function TrendsStackNavigator() {
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="TrendsScreen" component={TrendsScreen} />
+            <Stack.Screen name="History" component={HistoryScreen} options={{ headerShown: true }} />
         </Stack.Navigator>
     );
 }
@@ -65,7 +75,7 @@ const BottomTabBar = ({ navigation, state }) => (
 const TabNavigator = () => (
     <Navigator screenOptions={{ headerShown: false }} tabBar={props => <BottomTabBar {...props} />}>
         <Screen name='Measurements' component={HomeStackNavigator} />
-        <Screen name='Trends' component={TrendsScreen} />
+        <Screen name='Trends' component={TrendsStackNavigator} />
         <Screen name='MyProfile' component={ProfileStackNavigator} />
     </Navigator>
 );

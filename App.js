@@ -17,7 +17,7 @@ import LoadingIndicator from './constants/components/LoadingIndicator'
 // axios.defaults.baseURL = 'http://192.168.100.14:8000/api/v1'
 
 // DEVELOPMENT // HOME
-// axios.defaults.baseURL = 'http://192.168.0.11:8000/api/v1'
+// axios.defaults.baseURL = 'http://192.168.0.12:8000/api/v1'
 
 // PRODUCTION
 axios.defaults.baseURL = 'https://scallow.herokuapp.com/api/v1'

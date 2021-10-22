@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
@@ -42,7 +42,7 @@ const AppContextProvider = ({ children }) => {
             })
     }, [])
 
-    const getCustomerRecordings = () => {
+    const getCustomerRecordings = useCallback(() => {
         axios.get('/users/recordings')
             .then(res => {
                 if (res.status === 200 && res.data.recordings.length > 0) {
@@ -52,7 +52,7 @@ const AppContextProvider = ({ children }) => {
             }).catch(err => {
                 console.log(err)
             })
-    }
+    }, [])
 
     const getMe = () => {
         setGeneralAppLoading(true)
@@ -142,7 +142,9 @@ const AppContextProvider = ({ children }) => {
         getWeeklyChartRecords,
         weeklyChartRecords,
         monthlyChartRecords,
-        getMontlyChartRecords
+        getMontlyChartRecords,
+        customerRecordings,
+        getCustomerRecordings
     }
 
     return (

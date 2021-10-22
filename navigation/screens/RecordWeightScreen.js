@@ -8,7 +8,7 @@ import { useAppContext } from './../../context/AppContext'
 
 const RecordWeightScreen = ({ navigation }) => {
     const theme = useTheme()
-    const { mostRecentRecording, setMostRecentRecording, getMostRecentAndInitialRecording, getWeeklyChartRecords, getMontlyChartRecords, initialRecording, setInitialRecording } = useAppContext()
+    const { mostRecentRecording, getCustomerRecordings, getMostRecentAndInitialRecording, getWeeklyChartRecords, getMontlyChartRecords, initialRecording, setInitialRecording } = useAppContext()
     const [recordingDate, setDate] = React.useState(new Date());
     const { currentHeight, currentWeight, bodyFat } = mostRecentRecording
     const [heightValue, setHeightValue] = React.useState(currentHeight ? currentHeight : 180)
@@ -46,6 +46,7 @@ const RecordWeightScreen = ({ navigation }) => {
                     navigation.goBack()
                     getWeeklyChartRecords()
                     getMontlyChartRecords()
+                    getCustomerRecordings()
                 }
             }).catch(err => {
                 console.log(err.response)

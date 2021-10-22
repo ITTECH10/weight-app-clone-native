@@ -11,10 +11,14 @@ import BodyMassWeeklyChart from "../../components/UI/TRENDS/BODY_MASS_CHARTS/Bod
 import BodyMassMonthlyChart from "../../components/UI/TRENDS/BODY_MASS_CHARTS/BodyMassMonthlyChart";
 import { useAppContext } from "../../context/AppContext";
 
-const TrendsScreen = () => {
+const TrendsScreen = ({ navigation }) => {
     const [selectedIndex, setSelectedIndex] = React.useState(0)
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0)
-    const { weeklyChartRecords, monthlyChartRecords } = useAppContext()
+    const { weeklyChartRecords, monthlyChartRecords, getCustomerRecordings } = useAppContext()
+
+    // React.useEffect(() => {
+    //     getCustomerRecordings()
+    // }, [])
 
     const charts = weeklyChartRecords.length >= 7 && selectedIndex === 0 && selectedCategoryIndex === 0 ? (
         <WeeklyChart />
@@ -33,6 +37,7 @@ const TrendsScreen = () => {
     return (
         <Layout style={{ flex: 1 }}>
             <TrendResultSwitcher
+                navigation={navigation}
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
             />
