@@ -28,7 +28,7 @@ const BodyMassWeeklyChart = () => {
     return (
         <Layout>
             <Text category="h5" style={{ margin: 10 }}>
-                Last week BODY FAT statistics
+                Letzten Woche KÖRPERFETT statistik
             </Text>
             <Layout>
                 <Chart

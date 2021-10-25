@@ -28,7 +28,7 @@ const BmiMonthlyChart = () => {
     return (
         <Layout>
             <Text category="h5" style={{ margin: 10 }}>
-                Average BODY FAT for last 5 months
+                Durchschnittliches KÖRPERFETT der letzten 5 Monate
             </Text>
             <MonthsSwitcher />
             <Layout>

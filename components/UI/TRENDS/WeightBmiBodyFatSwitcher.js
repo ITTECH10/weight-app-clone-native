@@ -27,7 +27,7 @@ const WeightBmiBodyFatSwitcher = ({ selectedCategoryIndex, setSelectedCategoryIn
                     style={{ borderRadius: 20, backgroundColor: selectedCategoryIndex === 0 ? theme['color-primary-800'] : theme['color-primary-600'] }}
                 ></Button>
                 <AdaptiveText color={theme['color-primary-default']}>
-                    Weight
+                    Gewicht
                 </AdaptiveText>
             </Layout>
             <Layout style={{ marginHorizontal: 10, alignItems: 'center' }}>
@@ -47,7 +47,7 @@ const WeightBmiBodyFatSwitcher = ({ selectedCategoryIndex, setSelectedCategoryIn
                     style={{ borderRadius: 20, backgroundColor: selectedCategoryIndex === 2 ? theme['color-primary-800'] : theme['color-primary-600'] }}
                 ></Button>
                 <AdaptiveText color={theme['color-primary-default']}>
-                    Fat
+                    Fett
                 </AdaptiveText>
             </Layout>
         </Layout>

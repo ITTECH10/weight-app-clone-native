@@ -23,14 +23,14 @@ const TrendResultSwitcher = ({ selectedIndex, setSelectedIndex, navigation }) =>
                     appearance="ghost"
                     style={{ borderColor: '#eee', backgroundColor: selectedIndex === 0 ? theme['color-basic-default'] : null }}
                 >
-                    Week
+                    Woche
                 </Button>
                 <Button
                     onPress={() => setSelectedIndex(1)}
                     status="basic"
                     appearance="ghost"
                     style={{ marginHorizontal: 10, borderColor: '#eee', backgroundColor: selectedIndex === 1 ? theme['color-basic-default'] : null }}>
-                    Month
+                    Monat
                 </Button>
                 <Button
                     size="tiny"

@@ -40,11 +40,11 @@ const MenuButton = () => {
             onSelect={onItemSelect}
             onBackdropPress={() => setVisible(false)}>
             <MenuItem
-                title='Manual input'
+                title='Manuelle Eingabe'
                 accessoryRight={ManualInputIcon}
                 onPress={() => navigation.navigate('RecordWeight')}
             />
-            <MenuItem title='Share' accessoryRight={ShareIcon} />
+            <MenuItem title='Teilen' accessoryRight={ShareIcon} />
         </OverflowMenu>
     );
 };

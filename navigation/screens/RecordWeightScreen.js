@@ -57,7 +57,7 @@ const RecordWeightScreen = ({ navigation }) => {
         <ScrollView style={{ flex: 1 }}>
             <Layout>
                 <Text category="h5" style={{ textAlign: 'center', marginVertical: 20 }}>
-                    Height
+                    Höhe
                 </Text>
                 <AdaptiveText
                     style={{ textAlign: 'center' }}
@@ -73,7 +73,7 @@ const RecordWeightScreen = ({ navigation }) => {
             </Layout>
             <Layout>
                 <Text category="h5" style={{ textAlign: 'center', marginVertical: 20 }}>
-                    Weight
+                    Gewicht
                 </Text>
                 <AdaptiveText
                     style={{ textAlign: 'center' }}
@@ -89,7 +89,7 @@ const RecordWeightScreen = ({ navigation }) => {
             </Layout>
             <Layout style={{ marginVertical: 20 }}>
                 <Text category="h5" style={{ textAlign: 'center', marginVertical: 20 }}>
-                    Body Fat
+                    Körperfett
                 </Text>
                 <AdaptiveText
                     style={{ textAlign: 'center' }}
@@ -105,7 +105,7 @@ const RecordWeightScreen = ({ navigation }) => {
             </Layout>
             <Layout>
                 <Text category="h5" style={{ textAlign: 'center', marginTop: 20 }}>
-                    Date
+                    Datum
                 </Text>
                 <Calendar
                     date={recordingDate}
@@ -119,7 +119,7 @@ const RecordWeightScreen = ({ navigation }) => {
                 style={{ marginHorizontal: 15, marginVertical: 10 }}
                 onPress={handleSubmit}
             >
-                RECORD
+                AUFZEICHNEN
             </Button>
         </ScrollView>
     )

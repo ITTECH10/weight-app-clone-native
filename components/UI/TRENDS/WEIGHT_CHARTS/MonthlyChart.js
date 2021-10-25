@@ -28,7 +28,7 @@ const MonthlyChart = () => {
     return (
         <Layout>
             <Text category="h5" style={{ margin: 10 }}>
-                Average WEIGHT for last 5 months
+                Durchschnittliches GEWICHT der letzten 5 Monate
             </Text>
             <MonthsSwitcher />
             <Layout>

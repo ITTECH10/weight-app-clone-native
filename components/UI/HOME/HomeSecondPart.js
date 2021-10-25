@@ -27,7 +27,7 @@ const HomeSecondPart = ({ navigation }) => {
                         {currentWeight ? currentWeight : 0}kg
                     </AdaptiveText>
                     <AdaptiveText color={theme['color-basic-600']}>
-                        Weight
+                        Gewicht
                     </AdaptiveText>
                 </Layout>
                 <Layout style={styles.singleBox}>
@@ -43,7 +43,7 @@ const HomeSecondPart = ({ navigation }) => {
                         {bodyFat ? bodyFat : 0}%
                     </AdaptiveText>
                     <AdaptiveText color={theme['color-basic-600']}>
-                        Body fat
+                        Körperfett
                     </AdaptiveText>
                 </Layout>
             </Layout>

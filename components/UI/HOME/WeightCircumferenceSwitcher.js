@@ -14,12 +14,12 @@ const WeightCircumferenceSwitcher = ({ bgColor = '#fff' }) => {
             <View style={styles.switchBtnsContainer}>
                 <Button status="basic" onPress={() => navigation.navigate('Home')} style={{ ...styles.weightBtn, ...styles.switchBtns }}>
                     <AdaptiveText color={theme['color-primary-default']}>
-                        Weight
+                        Gewicht
                     </AdaptiveText>
                 </Button>
                 <Button status="basic" onPress={() => navigation.navigate('Circumferences')} style={styles.switchBtns}>
                     <AdaptiveText color={theme['color-primary-default']}>
-                        Circumferences
+                        Umfang
                     </AdaptiveText>
                 </Button>
             </View>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     weightBtn: {
-        marginRight: 18
+        marginRight: 15
     },
     switchBtns: {}
 })

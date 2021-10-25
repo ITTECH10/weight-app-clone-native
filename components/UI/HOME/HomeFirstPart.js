@@ -47,13 +47,13 @@ const HomeFirstPart = ({ navigation }) => {
                     <TouchableWithoutFeedback onPress={() => navigation.navigate('SetGoal')}>
                         <View>
                             <AdaptiveText>
-                                Weight Goal: {weightGoal ? weightGoal : 0}kg
+                                Zielgewicht: {weightGoal ? weightGoal : 0}kg
                             </AdaptiveText>
                         </View>
                     </TouchableWithoutFeedback>
                     <View>
                         <Button onPress={() => navigation.navigate('SetGoal')} style={styles.bodyFatBtn} size="small">
-                            Body fat goal
+                            Körperfettziel
                         </Button>
                     </View>
                 </View>
@@ -62,10 +62,10 @@ const HomeFirstPart = ({ navigation }) => {
             <View style={styles.fromDateText}>
                 {initialRecordingDate ?
                     <AdaptiveText>
-                        From {new Date(initialRecordingDate).toLocaleString()}
+                        Von {new Date(initialRecordingDate).toLocaleString()}
                     </AdaptiveText> :
                     <AdaptiveText>
-                        No stats for now.
+                        Vorerst keine Statistik.
                     </AdaptiveText>}
             </View>
             <View style={styles.recentChangesBox}>
@@ -74,7 +74,7 @@ const HomeFirstPart = ({ navigation }) => {
                         {mostRecentWeight && initialWeight ? weightCalculation : 0}kg
                     </AdaptiveText>
                     <AdaptiveText>
-                        Weight
+                        Gewicht
                     </AdaptiveText>
                 </View>
                 <View style={styles.changedStatsBtnBox}>
@@ -90,7 +90,7 @@ const HomeFirstPart = ({ navigation }) => {
                         {mostRecentBodyFat && initialBodyFat ? bodyFatCalculation : 0}%
                     </AdaptiveText>
                     <AdaptiveText>
-                        Body fat
+                        Körperfett
                     </AdaptiveText>
                 </View>
             </View>

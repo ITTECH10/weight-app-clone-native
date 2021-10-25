@@ -63,20 +63,20 @@ const LoginScreen = ({ navigation }) => {
                             style={{ marginBottom: 10 }}
                         />
                         <Input
-                            placeholder="Password"
+                            placeholder="Passwort"
                             onChangeText={handleChange('password')}
                             size="large"
                             style={{ marginBottom: 10 }}
                             secureTextEntry
                         />
                         <Button disabled={Object.values(fields).some(el => el === '')} size="medium" onPress={loginHandler}>
-                            Login
+                            Anmeldung
                         </Button>
                         <AdaptiveText onPress={() => navigation.navigate('Signup')} style={{ textAlign: 'center', marginTop: 3 }} color={theme['color-primary-default']}>
-                            Don't have an account? Signup
+                            Sie haben kein Konto? Anmelden
                         </AdaptiveText>
                         <AdaptiveText style={{ textAlign: 'center', marginTop: 3 }} color={theme['color-primary-default']}>
-                            Forgot your password?
+                            Passwort vergessen?
                         </AdaptiveText>
                     </Layout>
                 </Layout>

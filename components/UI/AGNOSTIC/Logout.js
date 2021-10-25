@@ -12,7 +12,7 @@ const Logout = () => {
             size="medium"
             onPress={logout}
         >
-            LOGOUT
+            AUSLOGGEN
         </Button>
     )
 }

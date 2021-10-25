@@ -6,17 +6,17 @@ const WeightHistory = () => {
     return (
         <Layout>
             <Text style={{ textAlign: 'center', marginVertical: 5, fontFamily: 'roboto-bold' }} category="h5">
-                Weight History
+                Gewichtsverlauf
             </Text>
             <Layout style={{ flexDirection: 'row', marginHorizontal: 20 }}>
                 <Layout style={{ width: '33.3%', alignItems: 'center' }}>
-                    <Text category="h6">Date</Text>
+                    <Text category="h6">Datum</Text>
                 </Layout>
                 <Layout style={{ width: '33.3%', alignItems: 'center' }}>
-                    <Text category="h6">Weight</Text>
+                    <Text category="h6">Gewicht</Text>
                 </Layout>
                 <Layout style={{ width: '33.3%', alignItems: 'center' }}>
-                    <Text category="h6">Difference</Text>
+                    <Text category="h6">Unterschied</Text>
                 </Layout>
             </Layout>
         </Layout>

@@ -12,3 +12,7 @@ export const ThemesIcon = (props) => (
 export const SetGoalIcon = (props) => (
     <Icon {...props} style={[props.style, { width: 25, height: 25 }]} name="trophy-outline" pack="material-community" />
 )
+
+export const DeleteIcon = (props) => (
+    <Icon {...props} style={[props.style, { width: 25, height: 25 }]} name="delete" pack="material-community" />
+)

@@ -28,7 +28,7 @@ const WeeklyChart = () => {
     return (
         <Layout>
             <Text category="h5" style={{ margin: 10 }}>
-                Last week WEIGHT statistics
+                Letzten Woche Gewichtsstatistik
             </Text>
             <Layout>
                 <Chart

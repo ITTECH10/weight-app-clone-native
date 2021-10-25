@@ -44,7 +44,7 @@ const SetGoalScreen = ({ navigation }) => {
     const goalToRender = selectedButton === 0 ? (
         <Layout style={{ flex: 1 }}>
             <Text category="h5" style={{ textAlign: 'center', marginVertical: 20 }}>
-                Weight
+                Gewicht
             </Text>
             <Text
                 style={{ textAlign: 'center' }}
@@ -61,7 +61,7 @@ const SetGoalScreen = ({ navigation }) => {
     ) : (
         <Layout style={{ flex: 1 }}>
             <Text category="h5" style={{ textAlign: 'center', marginVertical: 20 }}>
-                Body fat
+                Körperfett
             </Text>
             <Text
                 style={{ textAlign: 'center' }}
@@ -84,13 +84,13 @@ const SetGoalScreen = ({ navigation }) => {
                     appearance={selectedButton === 0 ? 'filled' : 'ghost'}
                     onPress={() => selectButtonHandler(0)}
                 >
-                    Weight Goal
+                    Zielgewicht
                 </Button>
                 <Button
                     appearance={selectedButton === 1 ? 'filled' : 'ghost'}
                     onPress={() => selectButtonHandler(1)}
                 >
-                    Body fat Goal
+                    Körperfettziel
                 </Button>
             </Layout>
             {goalToRender}
@@ -99,7 +99,7 @@ const SetGoalScreen = ({ navigation }) => {
                 style={{ marginHorizontal: 10, marginVertical: 15 }}
                 onPress={handleSubmit}
             >
-                RECORD
+                AUFZEICHNEN
             </Button>
         </Layout >
     )

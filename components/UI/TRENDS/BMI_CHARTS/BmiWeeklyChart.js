@@ -28,7 +28,7 @@ const BmiWeeklyChart = () => {
     return (
         <Layout>
             <Text category="h5" style={{ margin: 10 }}>
-                Last week BMI statistics
+                Letzten Woche BMI statistik
             </Text>
             <Layout>
                 <Chart

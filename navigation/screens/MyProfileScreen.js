@@ -33,7 +33,7 @@ const MyProfileScreen = ({ navigation }) => {
     const theme = useTheme()
     const { logedCustomer, mostRecentRecording } = useAppContext()
     const { currentWeight } = mostRecentRecording
-    const { email, fullName } = logedCustomer
+    const { email, fullName, gender } = logedCustomer
 
     return (
         <Layout style={{ flex: 1 }}>
@@ -46,17 +46,27 @@ const MyProfileScreen = ({ navigation }) => {
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 15 }}>
                     <View style={{ height: 70, width: 70 }}>
-                        <Image
-                            source={require('./../../assets/images/male-avatar.jpg')}
-                            style={{ height: '100%', width: '100%', borderRadius: 140 }} />
+                        {gender === 'herr' ?
+                            <Image
+                                source={require('./../../assets/images/male-avatar.jpg')}
+                                style={{ height: '100%', width: '100%', borderRadius: 140 }} />
+                            :
+                            <Image
+                                source={require('./../../assets/images/female-avatar.jpg')}
+                                style={{ height: '100%', width: '100%', borderRadius: 140 }} />}
                     </View>
                     <View style={{ marginLeft: 20, marginBottom: 10 }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <AdaptiveText category="h5" style={{ fontFamily: 'roboto-bold' }}>
                                 {fullName}
                             </AdaptiveText>
-                            <Button style={{ marginLeft: 5 }} size="medium" accessoryRight={EditIcon}>
-                                Edit
+                            <Button
+                                style={{ marginLeft: 5 }}
+                                size="medium"
+                                accessoryRight={EditIcon}
+                                onPress={() => navigation.navigate('EditProfile')}
+                            >
+                                Bearbeiten
                             </Button>
                         </View>
                         <View>
@@ -86,7 +96,7 @@ const MyProfileScreen = ({ navigation }) => {
                         size="large"
                     />
                     <Text category="s2">
-                        Help
+                        Hilfe
                     </Text>
                 </Layout>
                 <Layout style={{ alignItems: 'center' }}>
@@ -96,7 +106,7 @@ const MyProfileScreen = ({ navigation }) => {
                         size="large"
                     />
                     <Text category="s2">
-                        Add a member
+                        Mitglied hinzufügen
                     </Text>
                 </Layout>
                 <Layout style={{ alignItems: 'center' }}>
@@ -107,7 +117,7 @@ const MyProfileScreen = ({ navigation }) => {
                         size="large"
                     />
                     <Text category="s2">
-                        Settings
+                        Einstellungen
                     </Text>
                 </Layout>
             </Layout>
@@ -116,7 +126,9 @@ const MyProfileScreen = ({ navigation }) => {
                 <Layout style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
                     <Layout style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Layout style={{ height: 50, width: 50 }}>
-                            <Image style={{ height: '100%', width: '100%', borderRadius: 100 }} source={require('./../../assets/images/male-avatar.jpg')} />
+                            {gender === 'herr' ?
+                                <Image style={{ height: '100%', width: '100%', borderRadius: 100 }} source={require('./../../assets/images/male-avatar.jpg')} />
+                                : <Image style={{ height: '100%', width: '100%', borderRadius: 100 }} source={require('./../../assets/images/female-avatar.jpg')} />}
                         </Layout>
                         <Layout style={{ marginLeft: 5 }}>
                             <Text>
@@ -135,7 +147,7 @@ const MyProfileScreen = ({ navigation }) => {
                         >
                             {currentWeight ? currentWeight : 0}kg
                         </AdaptiveText>
-                        <Button size="tiny">Primary User</Button>
+                        <Button size="tiny">Hauptbenutzer</Button>
                     </Layout>
                 </Layout>
             </Layout>

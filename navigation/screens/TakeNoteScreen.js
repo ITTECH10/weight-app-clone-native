@@ -38,7 +38,7 @@ const TakeNoteScreen = ({ navigation }) => {
                     accessoryLeft={TakeNoteIcon}
                 />
                 <Input
-                    placeholder="Say something..."
+                    placeholder="Sag etwas..."
                     style={{ width: '80%' }}
                     textAlignVertical="top"
                     multiline
@@ -52,7 +52,7 @@ const TakeNoteScreen = ({ navigation }) => {
                 onPress={handleSubmit}
                 disabled={recordingNote === ''}
             >
-                SAVE
+                SPEICHERN
             </Button>
         </Layout>
     )

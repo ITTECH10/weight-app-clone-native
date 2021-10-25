@@ -32,7 +32,7 @@ const TrendsScreen = ({ navigation }) => {
         <BodyMassWeeklyChart />
     ) : monthlyChartRecords.length >= 5 && selectedIndex === 1 && selectedCategoryIndex === 2 ? (
         <BodyMassMonthlyChart />
-    ) : <Text category="s2" style={{ margin: 5 }}>Charts will appear after there is enough data.</Text>
+    ) : <Text category="s2" style={{ margin: 5 }}>Diagramme werden angezeigt, sobald genügend Daten vorhanden sind.</Text>
 
     return (
         <Layout style={{ flex: 1 }}>

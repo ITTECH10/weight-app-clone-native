@@ -34,7 +34,11 @@ const SettingsScreenItem = ({ title, icon, screenName }) => {
 }
 
 export const renderSettingsScreenItem = ({ item }) => (
-    <SettingsScreenItem title={item.title} icon={item.icon} screenName={item.screenName} />
+    <SettingsScreenItem
+        title={item.title}
+        icon={item.icon}
+        screenName={item.screenName}
+    />
 );
 
 export default SettingsScreenItem
