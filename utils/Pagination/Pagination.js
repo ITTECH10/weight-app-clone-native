@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout, Text, Button, useTheme } from '@ui-kitten/components'
 
-function Pagination({ data, RenderComponent, pageLimit, dataLimit, selectedCategoryIndex }) {
+function Pagination({ data, RenderComponent, pageLimit, dataLimit, selectedCategoryIndex, selectedBodyPart }) {
     const [pages] = React.useState(Math.ceil(data.length / dataLimit));
     const [currentPage, setCurrentPage] = React.useState(1);
     const theme = useTheme()
@@ -34,9 +34,14 @@ function Pagination({ data, RenderComponent, pageLimit, dataLimit, selectedCateg
     return (
         <Layout>
             <Layout className="dataContainer">
-                {getPaginatedData().map((d, idx) => {
-                    return <RenderComponent key={idx} data={d} selectedCategoryIndex={selectedCategoryIndex} />
-                })}
+                {getPaginatedData().map((d, idx) => (
+                    <RenderComponent
+                        key={idx} data={d}
+                        selectedCategoryIndex={selectedCategoryIndex}
+                        selectedBodyPart={selectedBodyPart}
+                    />
+                )
+                )}
             </Layout>
 
             <Layout className="pagination" style={{ flexDirection: 'row', marginVertical: 3, justifyContent: 'center' }}>

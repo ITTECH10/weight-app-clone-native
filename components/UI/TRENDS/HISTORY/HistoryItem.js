@@ -73,9 +73,9 @@ const HistoryItem = ({ data, selectedCategoryIndex }) => {
     return renderRow
 }
 
-export const renderHistoryItem = ({ item }) => (
-    <HistoryItem weight={item.currentWeight} recordingDate={item.recordingDate} />
-);
+// export const renderHistoryItem = ({ item }) => (
+//     <HistoryItem weight={item.currentWeight} recordingDate={item.recordingDate} />
+// );
 
 export default HistoryItem
 

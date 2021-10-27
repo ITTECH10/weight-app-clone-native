@@ -10,15 +10,26 @@ export const useAppContext = () => {
 }
 
 const AppContextProvider = ({ children }) => {
+    // GENERAL
     const [token, setToken] = React.useState()
     const [authenticated, setAuthenticated] = React.useState(false)
     const [generalAppLoading, setGeneralAppLoading] = React.useState(false)
+
+    // CUSTOMER RELATED
     const [logedCustomer, setLogedCustomer] = React.useState({})
     const [customerRecordings, setCustomerRecordings] = React.useState([])
+
+    // WEIGHT RECORDINGS
     const [mostRecentRecording, setMostRecentRecording] = React.useState({})
     const [initialRecording, setInitialRecording] = React.useState({})
-    const [weeklyChartRecords, setWeeklyChartRecords] = React.useState([])
     const [monthlyChartRecords, setMonthlyChartRecords] = React.useState([])
+    const [weeklyChartRecords, setWeeklyChartRecords] = React.useState([])
+
+    // BODY PART RECORDINGS
+    const [customerBodyPartRecordings, setCustomerBodyPartRecordings] = React.useState([])
+    const [weeklyBodyPartRecords, setWeeklyBodyPartRecords] = React.useState([])
+    const [mostRecentBodyPartMeasurement, setMostRecentBodyPartMeasurement] = React.useState({})
+    const [initialBodyPartMeasurement, setInitialBodyPartMeasurement] = React.useState({})
 
     const getMontlyChartRecords = React.useCallback(() => {
         axios.get('/users/recordings/monthly')
@@ -42,6 +53,17 @@ const AppContextProvider = ({ children }) => {
             })
     }, [])
 
+    const getWeeklyBodyPartChartRecords = React.useCallback(() => {
+        axios('/users/circumferences/weekly')
+            .then(res => {
+                if (res.status === 200) {
+                    setWeeklyBodyPartRecords(res.data.weeklyRecordings)
+                }
+            }).catch(err => {
+                console.log(err.response)
+            })
+    }, [])
+
     const getCustomerRecordings = useCallback(() => {
         axios.get('/users/recordings')
             .then(res => {
@@ -51,6 +73,16 @@ const AppContextProvider = ({ children }) => {
                 }
             }).catch(err => {
                 console.log(err)
+            })
+    }, [])
+
+    const getCustomerBodyPartMeasurements = useCallback(() => {
+        axios('/users/circumferences')
+            .then(res => {
+                if (res.status === 200) {
+                    setCustomerBodyPartRecordings(res.data.measurements)
+                    getMostRecentAndInitialBodyPartMeasure()
+                }
             })
     }, [])
 
@@ -88,6 +120,18 @@ const AppContextProvider = ({ children }) => {
             })
     }
 
+    const getMostRecentAndInitialBodyPartMeasure = () => {
+        axios.get('/users/circumferences/initial/recent')
+            .then(res => {
+                if (res.status === 200) {
+                    setMostRecentBodyPartMeasurement(res.data.mostRecentBodyPartMeasure)
+                    setInitialBodyPartMeasurement(res.data.initialBodyPartMeasure)
+                }
+            }).catch(err => {
+                console.log(err.response)
+            })
+    }
+
     const logout = React.useCallback(async () => {
         setGeneralAppLoading(true)
         setLogedCustomer({})
@@ -117,9 +161,12 @@ const AppContextProvider = ({ children }) => {
 
             axios.defaults.headers.common['Authorization'] = foundToken
             setAuthenticated(true)
+
             getMe()
             getCustomerRecordings()
+            getCustomerBodyPartMeasurements()
             getWeeklyChartRecords()
+            getWeeklyBodyPartChartRecords()
             getMontlyChartRecords()
         }
     }, [token])
@@ -140,11 +187,24 @@ const AppContextProvider = ({ children }) => {
         setInitialRecording,
         setToken,
         getWeeklyChartRecords,
+        getWeeklyBodyPartChartRecords,
         weeklyChartRecords,
+        weeklyBodyPartRecords,
+        setWeeklyBodyPartRecords,
         monthlyChartRecords,
         getMontlyChartRecords,
         customerRecordings,
-        getCustomerRecordings
+        getCustomerRecordings,
+        weeklyChartRecords,
+        setWeeklyChartRecords,
+
+        //BODY PART STUFF
+        customerBodyPartRecordings,
+        setCustomerBodyPartRecordings,
+        mostRecentBodyPartMeasurement,
+        setMostRecentBodyPartMeasurement,
+        initialBodyPartMeasurement,
+        setInitialBodyPartMeasurement
     }
 
     return (

@@ -8,7 +8,16 @@ import { useAppContext } from './../../context/AppContext'
 
 const RecordWeightScreen = ({ navigation }) => {
     const theme = useTheme()
-    const { mostRecentRecording, getCustomerRecordings, getMostRecentAndInitialRecording, getWeeklyChartRecords, getMontlyChartRecords, initialRecording, setInitialRecording } = useAppContext()
+    const {
+        mostRecentRecording,
+        getCustomerRecordings,
+        weeklyChartRecords,
+        setWeeklyChartRecords,
+        getMontlyChartRecords,
+        initialRecording,
+        setInitialRecording
+    } = useAppContext()
+
     const [recordingDate, setDate] = React.useState(new Date());
     const { currentHeight, currentWeight, bodyFat } = mostRecentRecording
     const [heightValue, setHeightValue] = React.useState(currentHeight ? currentHeight : 180)
@@ -38,15 +47,19 @@ const RecordWeightScreen = ({ navigation }) => {
         axios.post('/users/record', data)
             .then(res => {
                 if (res.status === 201) {
-                    // setMostRecentRecording(res.data.recording)
-                    getMostRecentAndInitialRecording()
+                    getCustomerRecordings()
+                    getMontlyChartRecords()
+
                     if (Object.keys(initialRecording).length === 0) {
                         setInitialRecording(res.data.recording)
                     }
+
+                    setWeeklyChartRecords([
+                        ...weeklyChartRecords,
+                        res.data.recording
+                    ])
+
                     navigation.goBack()
-                    getWeeklyChartRecords()
-                    getMontlyChartRecords()
-                    getCustomerRecordings()
                 }
             }).catch(err => {
                 console.log(err.response)

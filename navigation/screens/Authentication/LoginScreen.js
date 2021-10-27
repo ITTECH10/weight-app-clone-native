@@ -38,7 +38,7 @@ const LoginScreen = ({ navigation }) => {
                 setErrors({
                     message: err.response.data.message
                 })
-                // console.log(err)
+                console.log(err)
             })
     }
 

@@ -38,7 +38,11 @@ function TrendsStackNavigator() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="TrendsScreen" component={TrendsScreen} />
-            <Stack.Screen name="History" component={HistoryScreen} options={{ headerShown: true, headerTitle: 'Geschichte' }} />
+            <Stack.Screen
+                name="History"
+                component={HistoryScreen}
+                options={{ headerShown: true, headerTitle: 'Geschichte' }}
+            />
         </Stack.Navigator>
     );
 }

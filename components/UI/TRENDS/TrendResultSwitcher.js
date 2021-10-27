@@ -11,7 +11,15 @@ const HistoryIcon = (props) => (
     />
 )
 
-const TrendResultSwitcher = ({ selectedIndex, setSelectedIndex, navigation }) => {
+const BodyMeasureIcon = (props) => (
+    <Icon {...props}
+        name="human-male-height"
+        pack="material-community"
+        style={[props.style, { width: 20, height: 20 }]}
+    />
+)
+
+const TrendResultSwitcher = ({ selectedIndex, setSelectedIndex, navigation, switchToBodyMeasurementsHandler }) => {
     const theme = useTheme()
 
     return (
@@ -35,6 +43,13 @@ const TrendResultSwitcher = ({ selectedIndex, setSelectedIndex, navigation }) =>
                 <Button
                     size="tiny"
                     appearance="outline"
+                    style={styles.switchMeasurementsBtn}
+                    accessoryRight={BodyMeasureIcon}
+                    onPress={switchToBodyMeasurementsHandler}
+                />
+                <Button
+                    size="tiny"
+                    appearance="outline"
                     style={styles.historyBtn}
                     accessoryRight={HistoryIcon}
                     onPress={() => navigation.navigate('History')}
@@ -50,5 +65,9 @@ const styles = StyleSheet.create({
     historyBtn: {
         position: 'absolute',
         right: 15
+    },
+    switchMeasurementsBtn: {
+        position: 'absolute',
+        right: 70
     }
 })

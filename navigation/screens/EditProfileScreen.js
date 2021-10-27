@@ -116,7 +116,6 @@ const EditProfileScreen = ({ navigation }) => {
                 <Button
                     size="medium"
                     style={{ width: '80%' }}
-                    disabled={Object.values(fields).some(el => el === '')}
                     onPress={handleSubmit}
                 >SAVE</Button>
             </Layout>
