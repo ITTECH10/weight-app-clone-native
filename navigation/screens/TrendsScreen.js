@@ -15,6 +15,7 @@ import BodyMassMonthlyChart from "../../components/UI/TRENDS/BODY_MASS_CHARTS/Bo
 
 // BODY PARTS
 import BodyPartWeeklyCharts from "../../components/UI/TRENDS/BODY_PARTS/BodyPartWeeklyCharts";
+import BodyPartMonthlyCharts from "../../components/UI/TRENDS/BODY_PARTS/BodyPartMonthlyCharts";
 
 const data = [
     {
@@ -67,12 +68,68 @@ const data = [
     }
 ]
 
+const averageData = [
+    {
+        title: 'Hals',
+        dataKey: 'averageNeckDimension'
+    },
+    {
+        title: 'Schulter',
+        dataKey: 'averageShoulderDimension'
+    },
+    {
+        title: 'Büste',
+        dataKey: 'averageBustDimension'
+    },
+    {
+        title: 'Taille',
+        dataKey: 'averageWaistDimension'
+    },
+    {
+        title: 'Abdomen',
+        dataKey: 'averageAbdomenDimension'
+    },
+    {
+        title: 'Hüfte',
+        dataKey: 'averageHipDimension'
+    },
+    {
+        title: 'Bizeps (L)',
+        dataKey: 'averageLeftBicepsDimension'
+    },
+    {
+        title: 'Bizeps (R)',
+        dataKey: 'averageRightBicepsDimension'
+    },
+    {
+        title: 'Schenkel (L)',
+        dataKey: 'averageLeftThighDimension'
+    },
+    {
+        title: 'Schenkel (R)',
+        dataKey: 'averageRightThighDimension'
+    },
+    {
+        title: 'Kalb (L)',
+        dataKey: 'averageLeftCalfDimension'
+    },
+    {
+        title: 'Kalb (R)',
+        dataKey: 'averageRightCalfDimension'
+    }
+]
+
 const TrendsScreen = ({ navigation }) => {
     const [selectedIndex, setSelectedIndex] = React.useState(0)
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0)
     const [selectedBodyPartIndex, setSelectedBodyPartIndex] = React.useState(0)
     const [selectedMeasurementCategory, setSelectedMeasurementCategory] = React.useState(0)
-    const { weeklyChartRecords, monthlyChartRecords } = useAppContext()
+    const {
+        weeklyChartRecords,
+        monthlyChartRecords,
+        monthlyAverageBodyPartDimensions,
+        weeklyBodyPartRecords
+    } = useAppContext()
 
     const switchToBodyMeasurementsHandler = () => {
         if (selectedMeasurementCategory === 0) {
@@ -98,10 +155,15 @@ const TrendsScreen = ({ navigation }) => {
         <BodyMassMonthlyChart />
     ) : <Text category="s2" style={{ margin: 5 }}>Diagramme werden angezeigt, sobald genügend Daten vorhanden sind.</Text>
 
-    const bodyMeasurementCharts = selectedIndex === 0 ? (
+    const bodyMeasurementCharts = selectedIndex === 0 && weeklyBodyPartRecords.length >= 7 ? (
         <BodyPartWeeklyCharts
             title={data[selectedBodyPartIndex].title}
             dataKey={data[selectedBodyPartIndex].dataKey}
+        />
+    ) : selectedIndex === 1 && monthlyAverageBodyPartDimensions >= 5 ? (
+        <BodyPartMonthlyCharts
+            title={averageData[selectedBodyPartIndex].title}
+            dataKey={averageData[selectedBodyPartIndex].dataKey}
         />
     ) : <Text category="s2" style={{ margin: 5 }}> Diagramme werden angezeigt, sobald genügend Daten vorhanden sind.</Text >
 

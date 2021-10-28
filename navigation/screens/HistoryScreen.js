@@ -137,7 +137,7 @@ const HistoryScreen = ({ navigation }) => {
     )
 
     return (
-        <Layout style={{ flex: 1, }}>
+        <Layout style={{ flex: 1 }}>
             {selectedMeasurementIndex === 0 ? mainMeasurement : bodyPartMeasurement}
             {selectedMeasurementIndex === 0 ? mainMeasurementPagination : bodyPartMeasurementPagination}
             {selectedMeasurementIndex === 0 ? (

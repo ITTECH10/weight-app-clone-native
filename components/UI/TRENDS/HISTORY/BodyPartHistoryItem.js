@@ -14,18 +14,18 @@ const BodyPartHistoryItem = ({ data, selectedBodyPart }) => {
     const sizeCalculation = Math.sign(+data[selectedBodyPart] - +initialBodyPartMeasurement[selectedBodyPart])
 
     const renderRow =
-        <Layout style={{ flexDirection: 'row', marginVertical: 5, marginHorizontal: 20 }}>
-            <Layout style={{ backgroundColor: theme['color-basic-400'], width: '33.3%', alignItems: 'center', padding: 6 }}>
+        <Layout style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 5, marginHorizontal: 20 }}>
+            <Layout style={{ backgroundColor: theme['color-basic-400'], borderRadius: 20, width: '32%', alignItems: 'center', padding: 6 }}>
                 <Text category="h6" style={{ fontFamily: 'roboto-bold', color: '#fff' }}>
                     {formatedDate}
                 </Text>
             </Layout>
-            <Layout style={{ backgroundColor: theme['color-basic-400'], width: '33.3%', alignItems: 'center', padding: 6 }}>
+            <Layout style={{ marginHorizontal: 10, backgroundColor: theme['color-basic-400'], borderRadius: 20, width: '32%', alignItems: 'center', padding: 6 }}>
                 <Text category="h6" style={{ fontFamily: 'roboto-bold', color: '#fff' }}>
                     {data[selectedBodyPart]}cm
                 </Text>
             </Layout>
-            <Layout style={{ backgroundColor: sizeCalculation === -1 ? theme['color-primary-default'] : theme['color-danger-default'], width: '33.3%', alignItems: 'center', padding: 6 }}>
+            <Layout style={{ borderRadius: 20, backgroundColor: sizeCalculation === -1 ? theme['color-primary-default'] : sizeCalculation === 0 ? theme['color-primary-default'] : theme['color-danger-default'], width: '32%', alignItems: 'center', padding: 6 }}>
                 <Text category="h6" style={{ fontFamily: 'roboto-bold', color: '#fff' }}>
                     {`${sizeCalculation === -1 ? '' : sizeCalculation === 0 ? '' : sizeCalculation === 1 ? '+' : ''} ${Number(data[selectedBodyPart] - initialBodyPartMeasurement[selectedBodyPart]).toFixed(1)}cm`}
                 </Text>

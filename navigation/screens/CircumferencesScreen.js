@@ -13,38 +13,38 @@ const SaveIcon = (props) => (
 
 const CircumferencesScreen = ({ navigation }) => {
     const theme = useTheme()
-    const { logedCustomer, weeklyBodyPartRecords, setWeeklyBodyPartRecords, customerBodyPartRecordings, setCustomerBodyPartRecordings } = useAppContext()
+    const { logedCustomer, weeklyBodyPartRecords, setWeeklyBodyPartRecords, customerBodyPartRecordings, setCustomerBodyPartRecordings, getAverageMonthlyBodyPartDimensions } = useAppContext()
     const { gender, fullName } = logedCustomer
     const [selectedBodyPart, setSelectedBodyPart] = React.useState()
     const [selectedBodyPartIndex, setSelectedBodyPartIndex] = React.useState()
     const [modalVisible, setModalVisible] = React.useState(false)
-    const [date, setDate] = React.useState(new Date(new Date().getTime()))
+    const [date, setDate] = React.useState(new Date())
 
     const formatedDate = String(date).split(' ').slice(0, 5).join(' ')
 
-    React.useEffect(() => {
-        const dateInterval = setInterval(() => {
-            setDate(new Date(new Date().getTime()))
-        }, 1000)
+    // React.useEffect(() => {
+    //     const dateInterval = setInterval(() => {
+    //         setDate(new Date(new Date().getTime()))
+    //     }, 1000)
 
-        return () => {
-            clearInterval(dateInterval)
-        }
-    }, [date])
+    //     return () => {
+    //         clearInterval(dateInterval)
+    //     }
+    // }, [date])
 
     const [bodyParts, setBodyParts] = React.useState({
-        neck: 0,
-        shoulder: 0,
-        bust: 0,
-        waist: 0,
-        abdomen: 0,
-        hip: 0,
-        leftBiceps: 0,
-        rightBiceps: 0,
-        leftThigh: 0,
-        rightThigh: 0,
-        leftCalf: 0,
-        rightCalf: 0
+        neck: 20,
+        shoulder: 20,
+        bust: 20,
+        waist: 20,
+        abdomen: 20,
+        hip: 20,
+        leftBiceps: 20,
+        rightBiceps: 20,
+        leftThigh: 20,
+        rightThigh: 20,
+        leftCalf: 20,
+        rightCalf: 20
     })
 
     const { neck, shoulder, bust, waist, abdomen, hip, leftBiceps, rightBiceps, leftThigh, rightThigh, leftCalf, rightCalf } = bodyParts
@@ -61,6 +61,8 @@ const CircumferencesScreen = ({ navigation }) => {
         axios.post('/users/circumferences', data)
             .then(res => {
                 if (res.status === 201) {
+                    getAverageMonthlyBodyPartDimensions()
+
                     setCustomerBodyPartRecordings([
                         ...customerBodyPartRecordings,
                         res.data.circumference

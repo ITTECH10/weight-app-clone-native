@@ -8,7 +8,7 @@ const BodyPartHistory = ({ title }) => {
             <Text style={{ textAlign: 'center', marginVertical: 5, fontFamily: 'roboto-bold' }} category="h5">
                 {title}
             </Text>
-            <Layout style={{ flexDirection: 'row', marginHorizontal: 20 }}>
+            <Layout style={{ flexDirection: 'row', marginHorizontal: 10 }}>
                 <Layout style={{ width: '33.3%', alignItems: 'center' }}>
                     <Text category="h6">Datum</Text>
                 </Layout>

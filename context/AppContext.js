@@ -28,6 +28,7 @@ const AppContextProvider = ({ children }) => {
     // BODY PART RECORDINGS
     const [customerBodyPartRecordings, setCustomerBodyPartRecordings] = React.useState([])
     const [weeklyBodyPartRecords, setWeeklyBodyPartRecords] = React.useState([])
+    const [monthlyAverageBodyPartDimensions, setMonthlyAverageBodyPartDimensions] = React.useState([])
     const [mostRecentBodyPartMeasurement, setMostRecentBodyPartMeasurement] = React.useState({})
     const [initialBodyPartMeasurement, setInitialBodyPartMeasurement] = React.useState({})
 
@@ -47,6 +48,17 @@ const AppContextProvider = ({ children }) => {
             .then(res => {
                 if (res.status === 200) {
                     setWeeklyChartRecords(res.data.weeklyRecordings)
+                }
+            }).catch(err => {
+                console.log(err.response)
+            })
+    }, [])
+
+    const getAverageMonthlyBodyPartDimensions = React.useCallback(() => {
+        axios.get('/users/circumferences/monthly')
+            .then(res => {
+                if (res.status === 200) {
+                    setMonthlyAverageBodyPartDimensions(res.data.averageMonthlyRecordings)
                 }
             }).catch(err => {
                 console.log(err.response)
@@ -166,8 +178,9 @@ const AppContextProvider = ({ children }) => {
             getCustomerRecordings()
             getCustomerBodyPartMeasurements()
             getWeeklyChartRecords()
-            getWeeklyBodyPartChartRecords()
             getMontlyChartRecords()
+            getWeeklyBodyPartChartRecords()
+            getAverageMonthlyBodyPartDimensions()
         }
     }, [token])
 
@@ -189,8 +202,6 @@ const AppContextProvider = ({ children }) => {
         getWeeklyChartRecords,
         getWeeklyBodyPartChartRecords,
         weeklyChartRecords,
-        weeklyBodyPartRecords,
-        setWeeklyBodyPartRecords,
         monthlyChartRecords,
         getMontlyChartRecords,
         customerRecordings,
@@ -204,7 +215,12 @@ const AppContextProvider = ({ children }) => {
         mostRecentBodyPartMeasurement,
         setMostRecentBodyPartMeasurement,
         initialBodyPartMeasurement,
-        setInitialBodyPartMeasurement
+        setInitialBodyPartMeasurement,
+        weeklyBodyPartRecords,
+        setWeeklyBodyPartRecords,
+        monthlyAverageBodyPartDimensions,
+        setMonthlyAverageBodyPartDimensions,
+        getAverageMonthlyBodyPartDimensions
     }
 
     return (

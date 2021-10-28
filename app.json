@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "RENPHO_APP_CLONE_NATIVE",
-    "slug": "RENPHO_APP_CLONE_NATIVE",
+    "name": "Scallow",
+    "slug": "scallow",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
