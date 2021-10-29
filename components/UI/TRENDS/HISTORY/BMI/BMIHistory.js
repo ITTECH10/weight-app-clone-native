@@ -6,7 +6,7 @@ const BMIHistory = () => {
     return (
         <Layout>
             <Text style={{ textAlign: 'center', marginVertical: 5, fontFamily: 'roboto-bold' }} category="h5">
-                BMI Verlauf
+                BMI
             </Text>
             <Layout style={{ flexDirection: 'row', marginHorizontal: 20 }}>
                 <Layout style={{ width: '33.3%', alignItems: 'center' }}>

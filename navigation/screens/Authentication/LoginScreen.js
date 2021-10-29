@@ -75,7 +75,10 @@ const LoginScreen = ({ navigation }) => {
                         <AdaptiveText onPress={() => navigation.navigate('Signup')} style={{ textAlign: 'center', marginTop: 3 }} color={theme['color-primary-default']}>
                             Sie haben kein Konto? Anmelden
                         </AdaptiveText>
-                        <AdaptiveText style={{ textAlign: 'center', marginTop: 3 }} color={theme['color-primary-default']}>
+                        <AdaptiveText
+                            onPress={() => navigation.navigate('ForgotPassword')}
+                            style={{ textAlign: 'center', marginTop: 3 }}
+                            color={theme['color-primary-default']}>
                             Passwort vergessen?
                         </AdaptiveText>
                     </Layout>

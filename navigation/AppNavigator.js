@@ -18,6 +18,8 @@ import TakeNoteScreen from './screens/TakeNoteScreen'
 import HistoryScreen from './screens/HistoryScreen'
 import EditProfileScreen from './screens/EditProfileScreen'
 import DeleteProfileScreen from './screens/DeleteProfileScreen'
+import ForgotPasswordScreen from './screens/Authentication/ForgotPasswordScreen'
+import ResetPasswordScreen from './screens/Authentication/ResetPasswordScreen'
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -92,6 +94,16 @@ const AuthStackNavigator = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name='Login' component={LoginScreen} />
         <Stack.Screen name='Signup' component={SignupScreen} />
+        <Stack.Screen
+            name='ForgotPassword'
+            component={ForgotPasswordScreen}
+            options={{ headerShown: true, headerTitle: '' }}
+        />
+        <Stack.Screen
+            name='ResetPassword'
+            component={ResetPasswordScreen}
+            options={{ headerShown: true, headerTitle: '' }}
+        />
     </Stack.Navigator>
 )
 

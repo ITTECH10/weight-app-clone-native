@@ -22,6 +22,19 @@ const HomeFirstPart = ({ navigation }) => {
     const BMICalculation = `${statisticIsPositive(mostRecentBMI, initialBMI)}${Number(mostRecentBMI - initialBMI).toFixed(1)}`
     const bodyFatCalculation = `${statisticIsPositive(mostRecentBodyFat, initialBodyFat)}${Number(mostRecentBodyFat - initialBodyFat).toFixed(1)}`
 
+    const reachingGoalCalculation = statisticIsPositive(mostRecentWeight, weightGoal)
+
+    const reachingGoalStatus = reachingGoalCalculation === '+' ? (
+        <AdaptiveText>
+            Du bist <AdaptiveText color={theme['color-danger-default']}>{Number(mostRecentWeight - weightGoal).toFixed(1)}kg</AdaptiveText> über deinem Ziel gewicht.
+        </AdaptiveText>
+    )
+        : !reachingGoalCalculation ? (
+            <AdaptiveText>
+                Du brauchst <AdaptiveText>{Number(weightGoal - mostRecentWeight).toFixed(1)}kg</AdaptiveText> um dein Ziel zu erreichen.
+            </AdaptiveText>
+        ) : null
+
     return (
         <PrimaryColorView style={styles.mainContainer}>
             <WeightCircumferenceSwitcher
@@ -56,6 +69,11 @@ const HomeFirstPart = ({ navigation }) => {
                             Körperfettziel
                         </Button>
                     </View>
+                </View>
+                <View>
+                    <AdaptiveText style={{ marginTop: 5 }}>
+                        {reachingGoalStatus}
+                    </AdaptiveText>
                 </View>
             </View>
 
@@ -132,12 +150,12 @@ const styles = StyleSheet.create({
     },
     fromDateText: {
         marginLeft: 25,
-        marginTop: 45
+        marginTop: 35
     },
     recentChangesBox: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: 10
+        // marginBottom: 15
     },
     changedStatsBtnBox: {
         alignItems: 'center'

@@ -1,4 +1,4 @@
-import { SetGoalIcon, DeleteIcon } from './../../components/UI/ICONS/icons'
+import { SetGoalIcon, DeleteIcon, VideoTutorialIcon, PrivacyPolicyIcon } from './../../components/UI/ICONS/icons'
 
 class SettingsItemDataProvider {
     constructor() {
@@ -10,11 +10,23 @@ class SettingsItemDataProvider {
                 id: '1'
             },
             {
+                icon: VideoTutorialIcon,
+                title: 'Videoanleitung',
+                screenName: 'DeleteProfile',
+                id: '2'
+            },
+            {
+                icon: PrivacyPolicyIcon,
+                title: 'Datenschutz-Bestimmungen',
+                screenName: 'DeleteProfile',
+                id: '3'
+            },
+            {
                 icon: DeleteIcon,
                 title: 'Konto Loschen',
                 screenName: 'DeleteProfile',
-                id: '2'
-            }
+                id: '4'
+            },
         ]
     }
 

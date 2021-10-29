@@ -81,7 +81,9 @@ const AppContextProvider = ({ children }) => {
             .then(res => {
                 if (res.status === 200 && res.data.recordings.length > 0) {
                     setCustomerRecordings(res.data.recordings)
-                    getMostRecentAndInitialRecording()
+                    if (customerRecordings.length > 0) {
+                        getMostRecentAndInitialRecording()
+                    }
                 }
             }).catch(err => {
                 console.log(err)
@@ -93,7 +95,9 @@ const AppContextProvider = ({ children }) => {
             .then(res => {
                 if (res.status === 200) {
                     setCustomerBodyPartRecordings(res.data.measurements)
-                    getMostRecentAndInitialBodyPartMeasure()
+                    if (customerBodyPartRecordings.length > 0) {
+                        getMostRecentAndInitialBodyPartMeasure()
+                    }
                 }
             })
     }, [])

@@ -17,7 +17,7 @@ const SettingsScreenItem = ({ title, icon, screenName }) => {
                     size="tiny"
                 />
                 <Text
-                    category="h6"
+                    category="s2"
                     style={styles.itemContainerTitle}
                 >{title}
                 </Text>

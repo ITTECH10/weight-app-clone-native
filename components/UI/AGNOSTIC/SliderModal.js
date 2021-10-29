@@ -23,6 +23,8 @@ const SliderModal = ({ bodyParts, setBodyParts, selectedBodyPart, setModalVisibl
     const [sliderValue, setSliderValue] = React.useState(30)
     const theme = useTheme()
 
+    console.log(date)
+
     const saveSelectedBodyPartHandler = () => {
         setBodyParts({
             ...bodyParts,
@@ -51,7 +53,7 @@ const SliderModal = ({ bodyParts, setBodyParts, selectedBodyPart, setModalVisibl
                 />
                 <Calendar
                     date={date}
-                    onSelect={nextDate => setDate(nextDate)}
+                    onSelect={nextDate => setDate(new Date(nextDate))}
                     style={{ width: '100%', borderTopWidth: 0 }}
                 />
                 <Button
