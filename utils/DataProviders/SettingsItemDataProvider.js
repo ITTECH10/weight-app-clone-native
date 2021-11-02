@@ -12,20 +12,20 @@ class SettingsItemDataProvider {
             {
                 icon: VideoTutorialIcon,
                 title: 'Videoanleitung',
-                screenName: 'DeleteProfile',
+                screenName: 'VideoTutorial',
                 id: '2'
             },
-            {
-                icon: PrivacyPolicyIcon,
-                title: 'Datenschutz-Bestimmungen',
-                screenName: 'DeleteProfile',
-                id: '3'
-            },
+            // {
+            //     icon: PrivacyPolicyIcon,
+            //     title: 'Datenschutz-Bestimmungen',
+            //     screenName: 'DeleteProfile',
+            //     id: '3'
+            // },
             {
                 icon: DeleteIcon,
                 title: 'Konto Loschen',
                 screenName: 'DeleteProfile',
-                id: '4'
+                id: '3'
             },
         ]
     }

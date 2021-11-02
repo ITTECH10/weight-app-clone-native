@@ -2,7 +2,7 @@ import React from "react";
 import { Layout, Text } from "@ui-kitten/components";
 import { useAppContext } from "../../context/AppContext";
 import TrendResultSwitcher from "../../components/UI/TRENDS/TrendResultSwitcher";
-import WeightCircumferenceSwitcher from "../../components/UI/HOME/WeightCircumferenceSwitcher";
+// import WeightCircumferenceSwitcher from "../../components/UI/HOME/WeightCircumferenceSwitcher";
 import WeeklyChart from "../../components/UI/TRENDS/WEIGHT_CHARTS/WeeklyChart";
 import MonthlyChart from "../../components/UI/TRENDS/WEIGHT_CHARTS/MonthlyChart";
 // import YearlyChart from "../../components/UI/TRENDS/WEIGHT_CHARTS/YearlyChart";

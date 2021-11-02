@@ -65,7 +65,7 @@ const HistoryItem = ({ data, selectedCategoryIndex }) => {
                     {bodyFat}%
                 </Text>
             </Layout>
-            <Layout style={{ backgroundColor: BodyFatCalculation === -1 ? theme['color-primary-default'] : BMICalculation === 0 ? theme['color-primary-default'] : theme['color-danger-default'], width: '32%', borderRadius: 20, alignItems: 'center', padding: 8 }}>
+            <Layout style={{ backgroundColor: BodyFatCalculation === -1 ? theme['color-primary-default'] : BodyFatCalculation === 0 ? theme['color-primary-default'] : theme['color-danger-default'], width: '32%', borderRadius: 20, alignItems: 'center', padding: 8 }}>
                 <Text category="s1" style={{ fontFamily: 'roboto-bold', color: '#fff' }}>
                     {`${BodyFatCalculation === -1 ? '' : BodyFatCalculation === 0 ? '' : BodyFatCalculation === 1 ? '+' : ''} ${Number(bodyFat - initialBodyFat).toFixed(1)}%`}
                 </Text>
@@ -75,10 +75,6 @@ const HistoryItem = ({ data, selectedCategoryIndex }) => {
 
     return renderRow
 }
-
-// export const renderHistoryItem = ({ item }) => (
-//     <HistoryItem weight={item.currentWeight} recordingDate={item.recordingDate} />
-// );
 
 export default HistoryItem
 

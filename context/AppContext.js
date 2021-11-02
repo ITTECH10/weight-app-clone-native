@@ -81,9 +81,7 @@ const AppContextProvider = ({ children }) => {
             .then(res => {
                 if (res.status === 200 && res.data.recordings.length > 0) {
                     setCustomerRecordings(res.data.recordings)
-                    if (customerRecordings.length > 0) {
-                        getMostRecentAndInitialRecording()
-                    }
+                    getMostRecentAndInitialRecording()
                 }
             }).catch(err => {
                 console.log(err)
@@ -95,9 +93,7 @@ const AppContextProvider = ({ children }) => {
             .then(res => {
                 if (res.status === 200) {
                     setCustomerBodyPartRecordings(res.data.measurements)
-                    if (customerBodyPartRecordings.length > 0) {
-                        getMostRecentAndInitialBodyPartMeasure()
-                    }
+                    getMostRecentAndInitialBodyPartMeasure()
                 }
             })
     }, [])
@@ -149,6 +145,8 @@ const AppContextProvider = ({ children }) => {
     }
 
     const logout = React.useCallback(async () => {
+        setCustomerRecordings([])
+        setCustomerBodyPartRecordings([])
         setGeneralAppLoading(true)
         setLogedCustomer({})
         setMostRecentRecording({})

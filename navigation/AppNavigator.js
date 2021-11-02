@@ -20,6 +20,7 @@ import EditProfileScreen from './screens/EditProfileScreen'
 import DeleteProfileScreen from './screens/DeleteProfileScreen'
 import ForgotPasswordScreen from './screens/Authentication/ForgotPasswordScreen'
 import ResetPasswordScreen from './screens/Authentication/ResetPasswordScreen'
+import VideoTutorialScreen from './screens/VideoTutorialScreen';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -56,6 +57,7 @@ function ProfileStackNavigator() {
             <Stack.Screen name="Settings" options={{ headerTitle: 'Einstellungen' }} component={SettingsScreen} />
             <Stack.Screen name="EditProfile" options={{ headerTitle: 'Konto Bearbeiten' }} component={EditProfileScreen} />
             <Stack.Screen name="DeleteProfile" options={{ headerTitle: 'Konto Löschen' }} component={DeleteProfileScreen} />
+            <Stack.Screen name="VideoTutorial" options={{ headerTitle: 'Videoanleitung' }} component={VideoTutorialScreen} />
         </Stack.Navigator>
     );
 }

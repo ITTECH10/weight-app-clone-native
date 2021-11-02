@@ -3,7 +3,7 @@ import 'react-native-gesture-handler';
 import axios from 'axios'
 import * as eva from '@eva-design/eva';
 import AppContextProvider, { useAppContext } from './context/AppContext';
-import { ApplicationProvider, IconRegistry, Spinner } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { default as theme } from './theme.json'
 import * as Font from 'expo-font'
 import AppLoading from 'expo-app-loading'
