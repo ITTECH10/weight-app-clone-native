@@ -1,12 +1,9 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Layout, Icon, Text, Button, Input } from '@ui-kitten/components'
+import { Layout, Button, Input } from '@ui-kitten/components'
 import axios from 'axios'
 import { useAppContext } from '../../context/AppContext'
-
-const TakeNoteIcon = (props) => (
-    <Icon {...props} name="file-document-edit-outline" pack="material-community" />
-)
+import { TakeNoteIcon } from './../../components/UI/ICONS/icons'
 
 const TakeNoteScreen = ({ navigation }) => {
     const { mostRecentRecording, setMostRecentRecording } = useAppContext()

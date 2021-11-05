@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Image, ScrollView } from 'react-native'
+import { StyleSheet, Image, ScrollView, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { Button, Layout, Input, useTheme, Select, SelectItem } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
 import axios from 'axios'
@@ -17,6 +17,7 @@ const SignupScreen = ({ navigation }) => {
     const [keyboardVisible, setKeyboardVisible] = React.useState(false)
     const [selectedItemIndex, setSelectedItemIndex] = React.useState(0)
     const displayedItem = data[selectedItemIndex.row]
+
     const theme = useTheme()
     const [fields, setFields] = React.useState({
         firstName: '',
@@ -38,20 +39,20 @@ const SignupScreen = ({ navigation }) => {
         return password === candidatePassword
     }
 
-    // React.useEffect(() => {
-    //     const keyboardDidShow = Keyboard.addListener('keyboardDidShow', () => {
-    //         setKeyboardVisible(prevState => !prevState)
-    //     })
+    React.useEffect(() => {
+        const keyboardDidShow = Keyboard.addListener('keyboardDidShow', () => {
+            setKeyboardVisible(prevState => !prevState)
+        })
 
-    //     const keyboardDidHide = Keyboard.addListener('keyboardDidHide', () => {
-    //         setKeyboardVisible(false)
-    //     })
+        const keyboardDidHide = Keyboard.addListener('keyboardDidHide', () => {
+            setKeyboardVisible(false)
+        })
 
-    //     return () => {
-    //         keyboardDidShow.remove()
-    //         keyboardDidHide.remove()
-    //     }
-    // })
+        return () => {
+            keyboardDidShow.remove()
+            keyboardDidHide.remove()
+        }
+    })
 
     const handleChange = (name) => (value) => {
         setFields({ ...fields, [name]: value });
@@ -61,14 +62,14 @@ const SignupScreen = ({ navigation }) => {
         const data = { ...fields, gender: displayedItem.toLowerCase() }
         if (!passwordEqualityHandler(data.password, data.confirmPassword)) {
             setErrors({
-                message: 'Passwords do not match!'
+                message: 'Passwörter stimmen nicht überein!!'
             })
             return
         }
 
         if (!validateEmail(data.email)) {
             setErrors({
-                message: 'Please enter a valid email address!'
+                message: 'Bitte geben Sie eine gültige E-Mail-Adresse ein!'
             })
             return
         }
@@ -93,68 +94,73 @@ const SignupScreen = ({ navigation }) => {
     return (
         <Layout style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={{ alignItems: 'center', justifyContent: 'center' }}>
-                <Layout behavior="padding" style={{ width: '100%', height: 240, marginTop: 80 }}>
+                <Layout style={{ width: '100%', height: 240, marginTop: 80 }}>
                     <Image resizeMode="contain" style={{ height: '100%', width: '100%' }} source={require('./../../../assets/images/scallow-logo.png')} />
                 </Layout>
-
-                <Layout style={{ width: '80%', marginTop: 20, justifyContent: 'flex-end' }}>
-                    <Alert
-                        message={errors.message}
-                        setMessage={setErrors}
-                        severity={theme['color-danger-600']}
-                    />
-                    <Layout>
-                        <Input
-                            placeholder="Vorname"
-                            onChangeText={handleChange('firstName')}
-                            size="large"
-                            style={{ marginBottom: 10 }}
+                <KeyboardAvoidingView
+                    enabled={keyboardVisible}
+                    behavior="padding"
+                    keyboardVerticalOffset={-360}
+                >
+                    <Layout style={{ width: '80%', marginTop: 20, justifyContent: 'flex-end' }}>
+                        <Alert
+                            message={errors.message}
+                            setMessage={setErrors}
+                            severity={theme['color-danger-600']}
                         />
-                        <Input
-                            placeholder="Nachname"
-                            onChangeText={handleChange('lastName')}
-                            size="large"
-                            style={{ marginBottom: 10 }}
-                        />
-                        <Select
-                            placeholder="Geschlecht"
-                            size="large"
-                            value={displayedItem}
-                            selectedIndex={selectedItemIndex}
-                            onSelect={index => setSelectedItemIndex(index)}
-                            style={{ marginBottom: 10 }}
-                        >
-                            <SelectItem title="Herr" />
-                            <SelectItem title="Frau" />
-                        </Select>
-                        <Input
-                            placeholder="E-mail"
-                            onChangeText={handleChange('email')}
-                            size="large"
-                            style={{ marginBottom: 10 }}
-                        />
-                        <Input
-                            placeholder="Passwort"
-                            onChangeText={handleChange('password')}
-                            size="large"
-                            style={{ marginBottom: 10 }}
-                            secureTextEntry
-                        />
-                        <Input
-                            placeholder="Passwort bestätigen"
-                            onChangeText={handleChange('confirmPassword')}
-                            size="large"
-                            style={{ marginBottom: 20 }}
-                            secureTextEntry
-                        />
-                        <Button disabled={Object.values(fields).some(el => el === '')} size="medium" onPress={signupHandler}>
-                            Anmelden
-                        </Button>
-                        <AdaptiveText onPress={() => navigation.navigate('Login')} style={{ textAlign: 'center', marginTop: 3 }} color={theme['color-primary-default']}>
-                            Sie haben bereits ein Konto? Anmeldung
-                        </AdaptiveText>
+                        <Layout>
+                            <Input
+                                placeholder="Vorname"
+                                onChangeText={handleChange('firstName')}
+                                size="large"
+                                style={{ marginBottom: 10 }}
+                            />
+                            <Input
+                                placeholder="Nachname"
+                                onChangeText={handleChange('lastName')}
+                                size="large"
+                                style={{ marginBottom: 10 }}
+                            />
+                            <Select
+                                placeholder="Geschlecht"
+                                size="large"
+                                value={displayedItem}
+                                selectedIndex={selectedItemIndex}
+                                onSelect={index => setSelectedItemIndex(index)}
+                                style={{ marginBottom: 10 }}
+                            >
+                                <SelectItem title="Herr" />
+                                <SelectItem title="Frau" />
+                            </Select>
+                            <Input
+                                placeholder="E-mail"
+                                onChangeText={handleChange('email')}
+                                size="large"
+                                style={{ marginBottom: 10 }}
+                            />
+                            <Input
+                                placeholder="Passwort"
+                                onChangeText={handleChange('password')}
+                                size="large"
+                                style={{ marginBottom: 10 }}
+                                secureTextEntry
+                            />
+                            <Input
+                                placeholder="Passwort bestätigen"
+                                onChangeText={handleChange('confirmPassword')}
+                                size="large"
+                                style={{ marginBottom: 20 }}
+                                secureTextEntry
+                            />
+                            <Button disabled={Object.values(fields).some(el => el === '') || !displayedItem} size="medium" onPress={signupHandler}>
+                                Anmelden
+                            </Button>
+                            <AdaptiveText onPress={() => navigation.navigate('Login')} style={{ textAlign: 'center', marginTop: 3 }} color={theme['color-primary-default']}>
+                                Sie haben bereits ein Konto? Anmeldung
+                            </AdaptiveText>
+                        </Layout>
                     </Layout>
-                </Layout>
+                </KeyboardAvoidingView>
             </ScrollView>
         </Layout >
     )

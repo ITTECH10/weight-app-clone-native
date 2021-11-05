@@ -1,7 +1,7 @@
 import React from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import { Layout, Button, useTheme } from '@ui-kitten/components'
-import { bodyPartButtonsData } from '../../../utils/DataProviders/data'
+import { bodyPartData } from '../../../utils/DataProviders/data'
 
 const BodyFatMeasurementSwitcher = ({ selectedBodyPartIndex, setSelectedBodyPartIndex }) => {
     const theme = useTheme()
@@ -9,7 +9,7 @@ const BodyFatMeasurementSwitcher = ({ selectedBodyPartIndex, setSelectedBodyPart
     return (
         <Layout style={{ flexDirection: 'row', marginHorizontal: 10, marginTop: 5 }}>
             <ScrollView horizontal contentContainerStyle={{ paddingVertical: 10 }}>
-                {bodyPartButtonsData.map(bodyPart => (
+                {bodyPartData.map(bodyPart => (
                     <Button
                         key={bodyPart.id}
                         onPress={() => setSelectedBodyPartIndex(bodyPart.id)}

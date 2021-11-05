@@ -1,33 +1,10 @@
 import React from 'react'
-import { Layout, Button, Icon, Text, useTheme } from '@ui-kitten/components';
+import { Layout, Button, Text, useTheme } from '@ui-kitten/components';
 import PrimaryColorView from './../../constants/components/PrimaryColorView'
 import { View, Image } from 'react-native';
 import AdaptiveText from './../../constants/components/AdaptiveText'
 import { useAppContext } from './../../context/AppContext'
-
-const NotificationsBellIcon = (props) => (
-    <Icon {...props} name="bell-outline" pack="material-community" />
-)
-
-const EditIcon = (props) => (
-    <Icon {...props} name="playlist-edit" pack="material-community" />
-)
-
-const FaqIcon = (props) => (
-    <Icon {...props} name="comment-question-outline" pack="material-community" />
-)
-
-const HelpIcon = (props) => (
-    <Icon {...props} name="file-document-edit-outline" pack="material-community" />
-)
-
-const AddMemberIcon = (props) => (
-    <Icon {...props} name="account-plus-outline" pack="material-community" />
-)
-
-const SettingsIcon = (props) => (
-    <Icon {...props} name="cog-outline" pack="material-community" />
-)
+import { NotificationsBellIcon, EditIcon, FaqIcon, HelpIcon, AddMemberIcon, SettingsIcon } from './../../components/UI/ICONS/icons'
 
 const MyProfileScreen = ({ navigation }) => {
     const theme = useTheme()

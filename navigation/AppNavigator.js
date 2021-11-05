@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { BottomNavigation, BottomNavigationTab, Icon } from '@ui-kitten/components';
+import { BottomNavigation, BottomNavigationTab } from '@ui-kitten/components';
 import { createStackNavigator } from '@react-navigation/stack';
+import { HomeIcon, TrendsIcon, ProfileIcon } from './../components/UI/ICONS/icons'
 
 // SCREENS
 import SignupScreen from './screens/Authentication/SignupScreen'
@@ -61,18 +62,6 @@ function ProfileStackNavigator() {
         </Stack.Navigator>
     );
 }
-
-const HomeIcon = (props) => (
-    <Icon {...props} name='scale-balance' pack="material-community" />
-);
-
-const TrendsIcon = (props) => (
-    <Icon {...props} name='chart-bar' pack="material-community" />
-);
-
-const ProfileIcon = (props) => (
-    <Icon {...props} name='account' pack="material-community" />
-);
 
 const BottomTabBar = ({ navigation, state }) => (
     <BottomNavigation

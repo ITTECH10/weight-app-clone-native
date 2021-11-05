@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Layout, Button, Icon, Text } from '@ui-kitten/components'
+import { Layout, Button } from '@ui-kitten/components'
 import WeightBmiBodyFatSwitcher from '../../components/UI/TRENDS/WeightBmiBodyFatSwitcher'
 import WeightHistory from '../../components/UI/TRENDS/HISTORY/WEIGHT/WeightHistory'
 import BMIHistory from '../../components/UI/TRENDS/HISTORY/BMI/BMIHistory'
@@ -11,65 +11,8 @@ import Pagination from '../../utils/Pagination/Pagination'
 import BodyPartMeasurementSwitcher from '../../components/UI/TRENDS/BodyPartMeasurementSwitcher'
 import BodyPartHistory from '../../components/UI/TRENDS/HISTORY/BODY_PARTS/BodyPartHistory'
 import BodyPartHistoryItem from '../../components/UI/TRENDS/HISTORY/BodyPartHistoryItem'
-
-const BodyMeasureIcon = (props) => (
-    <Icon {...props}
-        name="human-male-height"
-        pack="material-community"
-        style={[props.style, { width: 20, height: 20 }]}
-    />
-)
-
-const data = [
-    {
-        title: 'Hals',
-        dataKey: 'neck'
-    },
-    {
-        title: 'Schulter',
-        dataKey: 'shoulder'
-    },
-    {
-        title: 'Büste',
-        dataKey: 'bust'
-    },
-    {
-        title: 'Taille',
-        dataKey: 'waist'
-    },
-    {
-        title: 'Abdomen',
-        dataKey: 'abdomen'
-    },
-    {
-        title: 'Hüfte',
-        dataKey: 'hip'
-    },
-    {
-        title: 'Bizeps (L)',
-        dataKey: 'leftBiceps'
-    },
-    {
-        title: 'Bizeps (R)',
-        dataKey: 'rightBizeps'
-    },
-    {
-        title: 'Schenkel (L)',
-        dataKey: 'leftThigh'
-    },
-    {
-        title: 'Schenkel (R)',
-        dataKey: 'rightThigh'
-    },
-    {
-        title: 'Kalb (L)',
-        dataKey: 'leftCalf'
-    },
-    {
-        title: 'Kalb (R)',
-        dataKey: 'rightCalf'
-    }
-]
+import { BodyMeasureIcon } from '../../components/UI/ICONS/icons'
+import { bodyPartData } from '../../utils/DataProviders/data'
 
 const HistoryScreen = ({ navigation }) => {
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0)
@@ -112,7 +55,7 @@ const HistoryScreen = ({ navigation }) => {
 
     const bodyPartMeasurement = (
         <BodyPartHistory
-            title={data[selectedBodyPartIndex].title}
+            title={bodyPartData[selectedBodyPartIndex].bodyPart}
         />
     )
 
@@ -122,7 +65,7 @@ const HistoryScreen = ({ navigation }) => {
             RenderComponent={BodyPartHistoryItem}
             pageLimit={5}
             dataLimit={10}
-            selectedBodyPart={data[selectedBodyPartIndex].dataKey}
+            selectedBodyPart={bodyPartData[selectedBodyPartIndex].bodyPartKey}
         />
     )
 

@@ -1,12 +1,9 @@
 import React from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
-import { Button, Layout, useTheme, Icon, Text } from '@ui-kitten/components'
+import { Button, Layout, useTheme, Text } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
 import { useAppContext } from '../../../context/AppContext'
-
-const TakeNoteIcon = (props) => (
-    <Icon {...props} name="file-document-edit-outline" pack="material-community" />
-)
+import { TakeNoteIcon } from './../ICONS/icons'
 
 const HomeSecondPart = ({ navigation }) => {
     const theme = useTheme()

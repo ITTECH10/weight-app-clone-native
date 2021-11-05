@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Layout, Text, useTheme } from '@ui-kitten/components'
 import { useAppContext } from '../../../../context/AppContext'
+import { months } from './../../../../utils/DataProviders/data'
 
 const HistoryItem = ({ data, selectedCategoryIndex }) => {
     const { currentWeight: weight, BMI, bodyFat, recordingDate } = data
@@ -9,9 +10,8 @@ const HistoryItem = ({ data, selectedCategoryIndex }) => {
     const { currentWeight: initialWeight, BMI: initialBMI, bodyFat: initialBodyFat } = initialRecording
     const theme = useTheme()
 
-    const formatedMinutes = new Date(recordingDate).toLocaleString().split(' ')[3].split(':').slice(0, 2).join(':')
-    const formatedDate = new Date(recordingDate).toLocaleString().split(' ').slice(1, 3).join(' ')
-    const finalDate = formatedDate + ' ' + formatedMinutes
+    const formatedMinutes = new Date(recordingDate).toLocaleTimeString().split(':').slice(0, 2).join(':')
+    const finalDate = `${months[new Date(recordingDate).getMonth()]} ${new Date(recordingDate).getDate()} ${formatedMinutes}`
 
     const weightCalculation = Math.sign(weight - initialWeight)
     const BMICalculation = Math.sign(BMI - initialBMI)

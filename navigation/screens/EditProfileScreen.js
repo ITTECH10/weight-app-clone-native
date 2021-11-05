@@ -1,24 +1,9 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, Image } from 'react-native'
-import { Layout, Button, Text, Icon, Input } from '@ui-kitten/components'
+import { Layout, Button, Text, Input } from '@ui-kitten/components'
 import { useAppContext } from '../../context/AppContext'
 import axios from 'axios'
-
-const MaleIcon = (props) => (
-    <Icon {...props} style={[props.style, { width: 40, height: 40 }]} name="human-male" pack="material-community" />
-)
-
-const FemaleIcon = (props) => (
-    <Icon {...props} style={[props.style, { width: 40, height: 40 }]} name="human-female" pack="material-community" />
-)
-
-const PersonIcon = (props) => (
-    <Icon {...props} style={[props.style, { width: 25, height: 25 }]} name="account" pack="material-community" />
-)
-
-const EmailIcon = (props) => (
-    <Icon {...props} style={[props.style, { width: 25, height: 25 }]} name="email" pack="material-community" />
-)
+import { MaleIcon, FemaleIcon, PersonIcon, EmailIcon } from './../../components/UI/ICONS/icons'
 
 const EditProfileScreen = ({ navigation }) => {
     const { logedCustomer, setLogedCustomer } = useAppContext()
@@ -97,18 +82,21 @@ const EditProfileScreen = ({ navigation }) => {
                     <Input
                         accessoryLeft={PersonIcon}
                         placeholder={firstName}
+                        label="Vorname"
                         style={styles.input}
                         onChangeText={handleChange('firstName')}
                     />
                     <Input
                         accessoryLeft={PersonIcon}
                         placeholder={lastName}
+                        label="Nachname"
                         style={styles.input}
                         onChangeText={handleChange('lastName')}
                     />
                     <Input
                         accessoryLeft={EmailIcon}
                         placeholder={email}
+                        label="Email"
                         style={styles.input}
                         disabled
                     />
@@ -117,7 +105,7 @@ const EditProfileScreen = ({ navigation }) => {
                     size="medium"
                     style={{ width: '80%' }}
                     onPress={handleSubmit}
-                >SAVE</Button>
+                >SPEICHERN</Button>
             </Layout>
         </Layout>
     )

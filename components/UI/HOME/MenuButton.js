@@ -1,16 +1,9 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { MenuItem, OverflowMenu, Icon, useTheme, Button } from '@ui-kitten/components'
+import { MenuItem, OverflowMenu, useTheme, Button } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
 import { useNavigation } from '@react-navigation/native'
-
-const ManualInputIcon = (props) => (
-    <Icon {...props} name="gesture-tap" pack="material-community" />
-)
-
-const ShareIcon = (props) => (
-    <Icon {...props} name="share-variant" pack="material-community" />
-)
+import { ManualInputIcon, ShareIcon } from './../ICONS/icons'
 
 const MenuButton = () => {
     const [selectedIndex, setSelectedIndex] = React.useState(null);

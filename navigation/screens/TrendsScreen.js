@@ -17,107 +17,7 @@ import BodyMassMonthlyChart from "../../components/UI/TRENDS/BODY_MASS_CHARTS/Bo
 import BodyPartWeeklyCharts from "../../components/UI/TRENDS/BODY_PARTS/BodyPartWeeklyCharts";
 import BodyPartMonthlyCharts from "../../components/UI/TRENDS/BODY_PARTS/BodyPartMonthlyCharts";
 
-const data = [
-    {
-        title: 'Hals',
-        dataKey: 'neck'
-    },
-    {
-        title: 'Schulter',
-        dataKey: 'shoulder'
-    },
-    {
-        title: 'Büste',
-        dataKey: 'bust'
-    },
-    {
-        title: 'Taille',
-        dataKey: 'waist'
-    },
-    {
-        title: 'Abdomen',
-        dataKey: 'abdomen'
-    },
-    {
-        title: 'Hüfte',
-        dataKey: 'hip'
-    },
-    {
-        title: 'Bizeps (L)',
-        dataKey: 'leftBiceps'
-    },
-    {
-        title: 'Bizeps (R)',
-        dataKey: 'rightBizeps'
-    },
-    {
-        title: 'Schenkel (L)',
-        dataKey: 'leftThigh'
-    },
-    {
-        title: 'Schenkel (R)',
-        dataKey: 'rightThigh'
-    },
-    {
-        title: 'Kalb (L)',
-        dataKey: 'leftCalf'
-    },
-    {
-        title: 'Kalb (R)',
-        dataKey: 'rightCalf'
-    }
-]
-
-const averageData = [
-    {
-        title: 'Hals',
-        dataKey: 'averageNeckDimension'
-    },
-    {
-        title: 'Schulter',
-        dataKey: 'averageShoulderDimension'
-    },
-    {
-        title: 'Büste',
-        dataKey: 'averageBustDimension'
-    },
-    {
-        title: 'Taille',
-        dataKey: 'averageWaistDimension'
-    },
-    {
-        title: 'Abdomen',
-        dataKey: 'averageAbdomenDimension'
-    },
-    {
-        title: 'Hüfte',
-        dataKey: 'averageHipDimension'
-    },
-    {
-        title: 'Bizeps (L)',
-        dataKey: 'averageLeftBicepsDimension'
-    },
-    {
-        title: 'Bizeps (R)',
-        dataKey: 'averageRightBicepsDimension'
-    },
-    {
-        title: 'Schenkel (L)',
-        dataKey: 'averageLeftThighDimension'
-    },
-    {
-        title: 'Schenkel (R)',
-        dataKey: 'averageRightThighDimension'
-    },
-    {
-        title: 'Kalb (L)',
-        dataKey: 'averageLeftCalfDimension'
-    },
-    {
-        title: 'Kalb (R)',
-        dataKey: 'averageRightCalfDimension'
-    }
-]
+import { bodyPartData } from './../../utils/DataProviders/data'
 
 const TrendsScreen = ({ navigation }) => {
     const [selectedIndex, setSelectedIndex] = React.useState(0)
@@ -157,13 +57,13 @@ const TrendsScreen = ({ navigation }) => {
 
     const bodyMeasurementCharts = selectedIndex === 0 && weeklyBodyPartRecords.length >= 7 ? (
         <BodyPartWeeklyCharts
-            title={data[selectedBodyPartIndex].title}
-            dataKey={data[selectedBodyPartIndex].dataKey}
+            title={bodyPartData[selectedBodyPartIndex].bodyPart}
+            dataKey={bodyPartData[selectedBodyPartIndex].bodyPartKey}
         />
-    ) : selectedIndex === 1 && monthlyAverageBodyPartDimensions >= 5 ? (
+    ) : selectedIndex === 1 && monthlyAverageBodyPartDimensions.length >= 5 ? (
         <BodyPartMonthlyCharts
-            title={averageData[selectedBodyPartIndex].title}
-            dataKey={averageData[selectedBodyPartIndex].dataKey}
+            title={bodyPartData[selectedBodyPartIndex].bodyPart}
+            dataKey={bodyPartData[selectedBodyPartIndex].averageBodyPartKey}
         />
     ) : <Text category="s2" style={{ margin: 5 }}> Diagramme werden angezeigt, sobald genügend Daten vorhanden sind.</Text >
 

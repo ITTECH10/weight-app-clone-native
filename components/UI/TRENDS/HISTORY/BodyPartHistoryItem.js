@@ -2,15 +2,15 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Layout, Text, useTheme } from '@ui-kitten/components'
 import { useAppContext } from '../../../../context/AppContext'
+import { months } from './../../../../utils/DataProviders/data'
 
 const BodyPartHistoryItem = ({ data, selectedBodyPart }) => {
     const { initialBodyPartMeasurement } = useAppContext()
     const { recordingDate } = data
     const theme = useTheme()
 
-    const formatedMinutes = new Date(recordingDate).toLocaleString().split(' ')[3].split(':').slice(0, 2).join(':')
-    const formatedDate = new Date(recordingDate).toLocaleString().split(' ').slice(1, 3).join(' ')
-    const finalDate = formatedDate + ' ' + formatedMinutes
+    const formatedMinutes = new Date(recordingDate).toLocaleTimeString().split(':').slice(0, 2).join(':')
+    const finalDate = `${months[new Date(recordingDate).getMonth()]} ${new Date(recordingDate).getDate()} ${formatedMinutes}`
 
     // BODY PART CALCULATIONS
     const sizeCalculation = Math.sign(+data[selectedBodyPart] - +initialBodyPartMeasurement[selectedBodyPart])

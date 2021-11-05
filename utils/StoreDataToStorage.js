@@ -20,7 +20,6 @@ export const storeObject = async (key, value) => {
     }
 }
 
-
 export const getStoredStringData = async (key) => {
     try {
         const value = await AsyncStorage.getItem(key)
@@ -31,7 +30,6 @@ export const getStoredStringData = async (key) => {
         console.log(e)
     }
 }
-
 
 export const getStoredObjectData = async () => {
     try {

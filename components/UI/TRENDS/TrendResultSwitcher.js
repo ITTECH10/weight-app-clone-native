@@ -1,23 +1,8 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Layout, Icon, Button, useTheme } from '@ui-kitten/components'
+import { Layout, Button, useTheme } from '@ui-kitten/components'
+import { HistoryIcon, BodyMeasureIcon } from './../ICONS/icons'
 // import AdaptiveText from './../../../constants/components/AdaptiveText'
-
-const HistoryIcon = (props) => (
-    <Icon {...props}
-        name="history"
-        pack="material-community"
-        style={[props.style, { width: 20, height: 20 }]}
-    />
-)
-
-const BodyMeasureIcon = (props) => (
-    <Icon {...props}
-        name="human-male-height"
-        pack="material-community"
-        style={[props.style, { width: 20, height: 20 }]}
-    />
-)
 
 const TrendResultSwitcher = ({ selectedIndex, setSelectedIndex, navigation, switchToBodyMeasurementsHandler }) => {
     const theme = useTheme()

@@ -1,19 +1,8 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Layout, Button, useTheme, Icon } from '@ui-kitten/components'
+import { Layout, Button, useTheme } from '@ui-kitten/components'
 import AdaptiveText from '../../../constants/components/AdaptiveText'
-
-const WeightIcon = (props) => (
-    <Icon {...props} pack="material-community" name="weight-kilogram" />
-)
-
-const BmiIcon = (props) => (
-    <Icon {...props} pack="material-community" name="human" />
-)
-
-const BodyFatIcon = (props) => (
-    <Icon {...props} pack="material-community" name="content-cut" />
-)
+import { WeightIcon, BmiIcon, BodyFatIcon } from './../ICONS/icons'
 
 const WeightBmiBodyFatSwitcher = ({ selectedCategoryIndex, setSelectedCategoryIndex }) => {
     const theme = useTheme()

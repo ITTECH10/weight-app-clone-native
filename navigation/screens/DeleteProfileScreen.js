@@ -1,12 +1,9 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Layout, Button, Text, Icon } from '@ui-kitten/components'
+import { Layout, Button, Text } from '@ui-kitten/components'
 import axios from 'axios'
 import { useAppContext } from '../../context/AppContext'
-
-const RemoveProfileIcon = (props) => (
-    <Icon {...props} style={[props.style, { width: 80, height: 80 }]} name="account-remove" pack="material-community" />
-)
+import { RemoveProfileIcon } from './../../components/UI/ICONS/icons'
 
 const DeleteProfileScreen = () => {
     const { logout } = useAppContext()
