@@ -28,18 +28,18 @@ const CircumferencesScreen = ({ navigation }) => {
     const [formatedDate, setFormatedDate] = React.useState(String(new Date()).split(' ').slice(0, 5).join(' '))
 
     const [bodyParts, setBodyParts] = React.useState({
-        neck: 10,
-        shoulder: 10,
-        bust: 10,
-        waist: 10,
-        abdomen: 10,
-        hip: 10,
-        leftBiceps: 10,
-        rightBiceps: 10,
-        leftThigh: 10,
-        rightThigh: 10,
-        leftCalf: 10,
-        rightCalf: 10
+        neck: 0,
+        shoulder: 0,
+        bust: 0,
+        waist: 0,
+        abdomen: 0,
+        hip: 0,
+        leftBiceps: 0,
+        rightBiceps: 0,
+        leftThigh: 0,
+        rightThigh: 0,
+        leftCalf: 0,
+        rightCalf: 0
     })
 
     const {
